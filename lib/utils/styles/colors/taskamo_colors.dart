@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 abstract class TaskamoColors {
-  // static Color bluePrimary = const Color.fromRGBO(2, 132, 199, 1);
   static Color blue = const Color.fromRGBO(79, 157, 255, 1);
   static Color yellow = const Color.fromRGBO(242, 201, 76, 1);
   static Color red = const Color.fromRGBO(255, 79, 79, 1);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:taskamo/utils/styles/colors/colors.dart';
+import 'package:taskamo/utils/styles/colors/taskamo_colors.dart';
 
 abstract class TaskamoTheme {
   static ThemeData darkTheme = ThemeData(
