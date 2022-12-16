@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:taskamo/utils/categories/hive_catrgories.dart';
+import 'package:taskamo/utils/categories/hive_categories.dart';
 
 abstract class TaskamoHiveClient {
   static const secureStorage = FlutterSecureStorage();
