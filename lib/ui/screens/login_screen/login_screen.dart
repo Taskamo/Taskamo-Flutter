@@ -113,7 +113,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         value: _value,
                       ),
-                      const Expanded(child: gSizedBox()),
+                      const Expanded(child: SizedBox()),
                       RichText(
                         textAlign: TextAlign.center,
                         text: TextSpan(
