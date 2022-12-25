@@ -1,4 +1,4 @@
-abstract class TaskamoIcons {
+abstract class TaskamoIconCategories {
   static const String arrowDownSmall = "assets/icons/arrow_down_small.svg";
   static const String arrowLeftSmall = "assets/icons/arrow_left_small.svg";
   static const String arrowRightSmall = "assets/icons/arrow_right_small.svg";
@@ -15,4 +15,5 @@ abstract class TaskamoIcons {
   static const String task = "assets/icons/task.svg";
   static const String timeLine = "assets/icons/time_line.svg";
   static const String x = "assets/icons/x.svg";
+  static const String eye = "assets/icons/eye.svg";
 }

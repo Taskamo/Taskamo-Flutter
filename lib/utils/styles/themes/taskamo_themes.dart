@@ -3,9 +3,10 @@ import 'package:taskamo/utils/styles/colors/taskamo_colors.dart';
 
 abstract class TaskamoTheme {
   static ThemeData darkTheme = ThemeData(
-    // fontFamily: ,
+    fontFamily: "nunito",
     backgroundColor: TaskamoColors.background,
     primaryColor: TaskamoColors.blue,
+    scaffoldBackgroundColor: TaskamoColors.background,
     primarySwatch: MaterialColor(
       TaskamoColors.blue.value,
       {
@@ -21,7 +22,26 @@ abstract class TaskamoTheme {
         900: TaskamoColors.blue.withOpacity(0.9),
       },
     ),
-    textTheme: TextTheme(
+    inputDecorationTheme: InputDecorationTheme(
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8)
+      )
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor:
+        MaterialStateProperty.all<Color>(TaskamoColors.blue),
+        overlayColor: MaterialStateProperty.all<Color>(
+          TaskamoColors.onPress,
+        ),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      ),
+    ),
+    textTheme: const TextTheme(
       //based on weight
       displayLarge: TextStyle(
         fontWeight: FontWeight.w700,

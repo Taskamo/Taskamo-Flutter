@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'taskamo_event.dart';
@@ -8,6 +6,32 @@ part 'taskamo_state.dart';
 
 class TaskamoRouterBloc extends Bloc<TaskamoRouterEvent, TaskamoRouterState> {
   TaskamoRouterBloc() : super(TaskamoInitial()) {
+    on<LandingScreenEvent>(
+      (event, emit) {
+        emit(LandingScreenState());
+        Future.delayed(
+          const Duration(seconds: 2),
+          () {
+            add(LoginScreenEvent());
+          },
+        );
+      },
+    );
+    on<LoginScreenEvent>(
+      (event, emit) {
+        emit(LoginScreenState());
+      },
+    );
+    on<SignupScreenEvent>(
+      (event, emit) {
+        emit(SignupScreenState());
+      },
+    );
+    on<LoadingScreenEvent>(
+      (event, emit) {
+        emit(LoadingScreenState());
+      },
+    );
     on<HomeScreenEvent>(
       (event, emit) {
         emit(HomeScreenState());
@@ -31,6 +55,11 @@ class TaskamoRouterBloc extends Bloc<TaskamoRouterEvent, TaskamoRouterState> {
     on<CalendarScreenEvent>(
       (event, emit) {
         emit(CalendarScreenState());
+      },
+    );
+    on<LogoutEvent>(
+      (event, emit) {
+        emit(LandingScreenState());
       },
     );
   }
