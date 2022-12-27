@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-part 'taskamo_event.dart';
+part 'taskamo_router_event.dart';
 
-part 'taskamo_state.dart';
+part 'taskamo_router_state.dart';
 
 class TaskamoRouterBloc extends Bloc<TaskamoRouterEvent, TaskamoRouterState> {
   TaskamoRouterBloc() : super(TaskamoInitial()) {

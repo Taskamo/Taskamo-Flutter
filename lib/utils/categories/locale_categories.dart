@@ -1,5 +1,5 @@
 abstract class TaskamoLocaleCategories{
-  static const String name = 'taskamo';
+  static const String name = 'name';
   static const String login = 'login';
   static const String youDontHaveAccount = 'youDontHaveAccount';
   static const String signUp = 'signUp';

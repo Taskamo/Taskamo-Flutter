@@ -1,4 +1,4 @@
-part of 'taskamo_bloc.dart';
+part of 'taskamo_router_bloc.dart';
 
 abstract class TaskamoRouterEvent {}
 

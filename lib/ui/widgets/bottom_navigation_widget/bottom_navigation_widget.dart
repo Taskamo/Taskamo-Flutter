@@ -1,7 +1,7 @@
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taskamo/blocs/router/taskamo_bloc.dart';
+import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
 import 'package:taskamo/ui/widgets/icon_widget/icon_widget.dart';
 import 'package:taskamo/utils/categories/icon_categories.dart';
