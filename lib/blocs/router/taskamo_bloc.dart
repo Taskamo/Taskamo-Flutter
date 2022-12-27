@@ -37,7 +37,7 @@ class TaskamoRouterBloc extends Bloc<TaskamoRouterEvent, TaskamoRouterState> {
         emit(HomeScreenState());
       },
     );
-    on<TimeLineScreenEvent>(
+    on<TimelineScreenEvent>(
       (event, emit) {
         emit(TimeLineScreenState());
       },

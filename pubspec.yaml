@@ -22,6 +22,11 @@ dependencies:
   localization: ^2.1.0
   flutter_localizations:
     sdk: flutter
+  floating_bottom_navigation_bar: ^1.5.2
+#  calendar_view: ^1.0.1
+  table_calendar: ^3.0.8
+#  syncfusion_flutter_calendar: ^20.4.38
+
 #  http: ^0.13.4
 #  shamsi_date: ^1.0.1
 

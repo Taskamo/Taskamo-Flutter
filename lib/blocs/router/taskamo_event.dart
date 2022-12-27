@@ -12,7 +12,7 @@ class LoadingScreenEvent extends TaskamoRouterEvent {}
 
 class HomeScreenEvent extends TaskamoRouterEvent {}
 
-class TimeLineScreenEvent extends TaskamoRouterEvent {}
+class TimelineScreenEvent extends TaskamoRouterEvent {}
 
 class EventScreenEvent extends TaskamoRouterEvent {}
 

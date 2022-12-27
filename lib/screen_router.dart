@@ -3,8 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 import 'package:taskamo/blocs/router/taskamo_bloc.dart';
+import 'package:taskamo/ui/screens/calendar_screen/calendar_screen.dart';
+import 'package:taskamo/ui/screens/event_screen/event_screen.dart';
+import 'package:taskamo/ui/screens/home_screen/home_screen.dart';
 import 'package:taskamo/ui/screens/landing_screen/landing_screen.dart';
 import 'package:taskamo/ui/screens/login_screen/login_screen.dart';
+import 'package:taskamo/ui/screens/task_screen/task_screen.dart';
+import 'package:taskamo/ui/screens/timeline_screen/timeline_screen.dart';
 import 'package:taskamo/utils/categories/locale_categories.dart';
 import 'package:taskamo/utils/styles/colors/taskamo_colors.dart';
 import 'package:taskamo/utils/styles/themes/taskamo_themes.dart';
@@ -57,14 +62,19 @@ class TaskamoRouter extends StatelessWidget {
               //signup
             } else if (state is HomeScreenState) {
               //home
+              return const HomeScreen();
             } else if (state is TimeLineScreenState) {
               //timeline
+              return const TimelineScreen();
             } else if (state is EventScreenState) {
               //event
+              return const EventScreen();
             } else if (state is TaskScreenState) {
               //task
+              return const TaskScreen();
             } else if (state is CalendarScreenState) {
               //calendar
+              return const CalendarScreen();
             } else {
               //loading
 

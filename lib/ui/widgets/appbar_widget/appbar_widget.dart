@@ -10,12 +10,13 @@ class TaskamoAppbar extends StatelessWidget {
   const TaskamoAppbar({Key? key}) : super(key: key);
 
   @override
-  PreferredSize build(BuildContext context) {
-    return PreferredSize(
-      preferredSize: Size(MediaQuery.of(context).size.width, 64),
-      child: SafeArea(
-        child: DecorationWidget(
-          margin: const EdgeInsets.all(8),
+  Widget build(BuildContext context) {
+    return SliverPadding(
+      padding: const EdgeInsets.all(8),
+      sliver: SliverAppBar(
+        backgroundColor: Colors.transparent,
+        floating: true,
+        flexibleSpace: DecorationWidget(
           container: Container(
             padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
             decoration: TaskamoDecoration.decoration,

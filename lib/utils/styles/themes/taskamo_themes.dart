@@ -4,7 +4,7 @@ import 'package:taskamo/utils/styles/colors/taskamo_colors.dart';
 abstract class TaskamoTheme {
   static ThemeData darkTheme = ThemeData(
     fontFamily: "nunito",
-    backgroundColor: TaskamoColors.background,
+    backgroundColor: TaskamoColors.boxBackground,
     primaryColor: TaskamoColors.blue,
     scaffoldBackgroundColor: TaskamoColors.background,
     primarySwatch: MaterialColor(
