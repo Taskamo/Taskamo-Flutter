@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:taskamo/utils/styles/colors/taskamo_colors.dart';
 
-
-
 class TextButtonWidget extends StatelessWidget {
   const TextButtonWidget({
     this.height = 48,
@@ -53,6 +51,7 @@ class TextButtonWidget extends StatelessWidget {
     );
   }
 }
+
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
     this.height = 48,
@@ -127,8 +126,10 @@ class InvisibleTextButtonWidget extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: Theme.of(context).textButtonTheme.style!.copyWith(
-              backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
-              overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
+              backgroundColor:
+                  MaterialStateProperty.all<Color>(Colors.transparent),
+              overlayColor:
+                  MaterialStateProperty.all<Color>(Colors.transparent),
             ),
         child: Text(
           text,
@@ -178,4 +179,3 @@ class IconButtonWidget extends StatelessWidget {
     );
   }
 }
-

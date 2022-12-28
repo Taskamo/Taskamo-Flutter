@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:taskamo/ui/screens/home_screen/home_widget.dart';
 import 'package:taskamo/ui/widgets/appbar_widget/appbar_widget.dart';
 import 'package:taskamo/ui/widgets/bottom_navigation_widget/bottom_navigation_widget.dart';
+import 'package:taskamo/ui/widgets/drawer_widget/drawer_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,6 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: const DrawerWidget(),
       extendBody: true,
       body: SafeArea(
         child: Stack(

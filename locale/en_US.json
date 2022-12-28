@@ -21,5 +21,14 @@
   "seeAllTodo": "See all Todos",
   "dropToDoing": "Drop To Doing",
   "dropToDone": "Drop To Done",
+  "edit": "Edit",
+  "delete": "Delete",
+  "home": "Home",
+  "timeLine": "Time line",
+  "events": "Events",
+  "toDo": "To-Do",
+  "calendar": "Calendar",
+  "profile": "Profile",
+  "setting": "Setting",
   "": ""
 }

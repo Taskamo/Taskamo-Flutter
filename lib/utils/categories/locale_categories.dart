@@ -1,4 +1,4 @@
-abstract class TaskamoLocaleCategories{
+abstract class TaskamoLocaleCategories {
   static const String name = 'name';
   static const String login = 'login';
   static const String youDontHaveAccount = 'youDontHaveAccount';
@@ -22,5 +22,13 @@ abstract class TaskamoLocaleCategories{
   static const String seeAllTodo = 'seeAllTodo';
   static const String dropToDoing = 'dropToDoing';
   static const String dropToDone = 'dropToDone';
-
+  static const String edit = 'edit';
+  static const String delete = 'delete';
+  static const String home = 'home';
+  static const String timeLine = 'timeLine';
+  static const String events = 'events';
+  static const String toDo = 'toDo';
+  static const String calendar = 'calendar';
+  static const String profile = 'profile';
+  static const String setting = 'setting';
 }

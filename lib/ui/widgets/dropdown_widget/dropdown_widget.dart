@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:localization/localization.dart';
 import 'package:taskamo/blocs/status_dropdown/todo_status_dropdown_cubit.dart';
 import 'package:taskamo/ui/widgets/icon_widget/icon_widget.dart';
 import 'package:taskamo/utils/categories/icon_categories.dart';
@@ -13,12 +14,27 @@ class TodoStatusDropDown extends StatefulWidget {
     Key? key,
   }) : super(key: key);
 
+
   @override
   State<TodoStatusDropDown> createState() => _TodoStatusDropDownState();
 }
 
 class _TodoStatusDropDownState extends State<TodoStatusDropDown> {
-  String selectedValue = TaskamoLocaleCategories.doing;
+  String selectedValue = TaskamoLocaleCategories.doing.i18n();
+  final List<TaskStatusDropDownItem> _list = [
+    TaskStatusDropDownItem(
+      status: TodoStatus.todo,
+      itemName: TaskamoLocaleCategories.todo.i18n(),
+    ),
+    TaskStatusDropDownItem(
+      status: TodoStatus.doing,
+      itemName: TaskamoLocaleCategories.doing.i18n(),
+    ),
+    TaskStatusDropDownItem(
+      status: TodoStatus.done,
+      itemName: TaskamoLocaleCategories.done.i18n(),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -28,38 +44,21 @@ class _TodoStatusDropDownState extends State<TodoStatusDropDown> {
         child: DropdownButton2(
           style: Theme.of(context).textTheme.headlineMedium,
           isExpanded: true,
-          hint: Row(
-            children: [
-              Text(
-                selectedValue,
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ],
+          hint: Text(
+            selectedValue,
+            style: Theme.of(context).textTheme.headlineMedium,
           ),
-          items: [
-            TaskamoDropDownItem(
-              status: TodoStatus.todo,
-              name: TaskamoLocaleCategories.todo,
-            ),
-            TaskamoDropDownItem(
-              status: TodoStatus.doing,
-              name: TaskamoLocaleCategories.doing,
-            ),
-            TaskamoDropDownItem(
-              status: TodoStatus.done,
-              name: TaskamoLocaleCategories.done,
-            ),
-          ]
-              .map(
+          items:
+              _list.map(
                 (item) => DropdownMenuItem<String>(
                   onTap: () {
                     context.read<TodoStatusDropdownCubit>().changeStatus(
                           status: item.status,
                         );
                   },
-                  value: item.name,
+                  value: item.itemName,
                   child: Text(
-                    item.name,
+                    item.itemName,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                 ),
@@ -116,12 +115,12 @@ class _TodoStatusDropDownState extends State<TodoStatusDropDown> {
   }
 }
 
-class TaskamoDropDownItem {
-  TaskamoDropDownItem({
+class TaskStatusDropDownItem {
+  TaskStatusDropDownItem({
     required this.status,
-    required this.name,
+    required this.itemName,
   });
 
-  final String name;
+  final String itemName;
   final TodoStatus status;
 }

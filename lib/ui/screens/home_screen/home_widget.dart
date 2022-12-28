@@ -8,6 +8,7 @@ import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
 import 'package:taskamo/ui/widgets/dropdown_widget/dropdown_widget.dart';
 import 'package:taskamo/ui/widgets/icon_widget/icon_widget.dart';
+import 'package:taskamo/ui/widgets/popup_menu_widget/popup_menu_widget.dart';
 import 'package:taskamo/ui/widgets/time_widget/time_widget.dart';
 import 'package:taskamo/utils/categories/icon_categories.dart';
 import 'package:taskamo/utils/categories/locale_categories.dart';
@@ -83,24 +84,28 @@ class HomeTimelineWidget extends StatelessWidget {
                   TaskamoLocaleCategories.nextWork.i18n(),
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
-                IconButtonWidget(
-                  widget: const IconWidget(
-                    url: TaskamoIconCategories.more,
-                    height: 24,
-                    width: 24,
-                  ),
-                  onPressed: () {
-                    //TODO here
-                  },
-                ),
+                const TimelinePopupMenuWidget(),
+                // IconButtonWidget(
+                //   widget: const IconWidget(
+                //     url: TaskamoIconCategories.more,
+                //     height: 24,
+                //     width: 24,
+                //   ),
+                //   onPressed: () {
+                //     //TODO here
+                //   },
+                // ),
               ],
             ),
-            Text(
-              "meeting with mehdi Einali* very very very very very very very very very very very very very very very very very very very very very ",
-              style: Theme.of(context).textTheme.titleSmall!.apply(
-                    color: TaskamoColors.blue,
-                  ),
-              textAlign: TextAlign.left,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: Text(
+                "meeting with mehdi Einali* very very very very very very very very very very very very very very very very very very very very very ",
+                style: Theme.of(context).textTheme.titleSmall!.apply(
+                      color: TaskamoColors.blue,
+                    ),
+                textAlign: TextAlign.left,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),

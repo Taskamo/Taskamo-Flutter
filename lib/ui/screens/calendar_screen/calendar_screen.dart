@@ -8,7 +8,7 @@ class CalendarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: const TaskamoAppbar().build(context),
+      // appBar: const TaskamoAppbar(),
       body: const Center(
         child: Text("Calendar screen"),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
 import 'package:taskamo/ui/widgets/icon_widget/icon_widget.dart';
 import 'package:taskamo/ui/widgets/time_widget/time_widget.dart';
@@ -14,11 +15,15 @@ class TaskamoAppbar extends StatelessWidget {
     return SliverPadding(
       padding: const EdgeInsets.all(8),
       sliver: SliverAppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         floating: true,
+        actions: <Widget>[Container()],
         flexibleSpace: DecorationWidget(
           container: Container(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            padding: const EdgeInsets.only(
+              left: 16,
+            ),
             decoration: TaskamoDecoration.decoration,
             child: Row(
               children: [
@@ -35,11 +40,14 @@ class TaskamoAppbar extends StatelessWidget {
                   ),
                 ),
                 const Expanded(child: SizedBox()),
-                const IconWidget(
-                  url: TaskamoIconCategories.menu,
-                  height: 24,
-                  width: 24,
-                )
+                IconButtonWidget(
+                  widget: const IconWidget(
+                    url: TaskamoIconCategories.menu,
+                    height: 24,
+                    width: 24,
+                  ),
+                  onPressed: () => Scaffold.of(context).openEndDrawer(),
+                ),
               ],
             ),
           ),

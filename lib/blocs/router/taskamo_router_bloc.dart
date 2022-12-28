@@ -59,7 +59,7 @@ class TaskamoRouterBloc extends Bloc<TaskamoRouterEvent, TaskamoRouterState> {
     );
     on<LogoutEvent>(
       (event, emit) {
-        emit(LandingScreenState());
+        add(LandingScreenEvent());
       },
     );
   }
