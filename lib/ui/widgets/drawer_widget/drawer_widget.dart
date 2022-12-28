@@ -73,20 +73,20 @@ class LoginDrawerCreatorsWidget extends StatelessWidget {
         text: TextSpan(
           style: Theme.of(context).textTheme.displayLarge,
           children: [
-            const TextSpan(
-              text: "Creators:\n",
+            TextSpan(
+              text: TaskamoLocaleCategories.creators.i18n(),
             ),
             TextSpan(
-              text: "Amin Bitaraf & Mahdi Kafash\n\n",
+              text: TaskamoLocaleCategories.cNames.i18n(),
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
                     fontSize: 18,
                   ),
             ),
-            const TextSpan(
-              text: "a special thanks to:\n",
+            TextSpan(
+              text: TaskamoLocaleCategories.thanksTo.i18n(),
             ),
             TextSpan(
-              text: "Mozhdeh Rezaei & Alireza Mousavi",
+              text: TaskamoLocaleCategories.tNames.i18n(),
               style: Theme.of(context).textTheme.displayLarge!.copyWith(
                     fontSize: 18,
                   ),

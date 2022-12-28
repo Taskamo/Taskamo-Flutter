@@ -43,8 +43,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: DecorationWidget(
                   margin: const EdgeInsets.all(8),
                   container: Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 32),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 32,
+                    ),
                     decoration: TaskamoDecoration.decoration,
                     child: BlocBuilder<LoadedImageCubit, LoadedImageState>(
                       builder: (context, state) {

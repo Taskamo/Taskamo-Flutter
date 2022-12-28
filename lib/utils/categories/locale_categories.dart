@@ -22,6 +22,7 @@ abstract class TaskamoLocaleCategories {
   static const String seeAllTodo = 'seeAllTodo';
   static const String dropToDoing = 'dropToDoing';
   static const String dropToDone = 'dropToDone';
+  static const String dropToTodo = 'dropToTodo';
   static const String edit = 'edit';
   static const String delete = 'delete';
   static const String home = 'home';
@@ -31,4 +32,8 @@ abstract class TaskamoLocaleCategories {
   static const String calendar = 'calendar';
   static const String profile = 'profile';
   static const String setting = 'setting';
+  static const String creators = 'creators';
+  static const String cNames = 'cNames';
+  static const String thanksTo = 'thanksTo';
+  static const String tNames = 'tNames';
 }

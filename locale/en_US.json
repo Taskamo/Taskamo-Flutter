@@ -21,6 +21,7 @@
   "seeAllTodo": "See all Todos",
   "dropToDoing": "Drop To Doing",
   "dropToDone": "Drop To Done",
+  "dropToTodo": "Drop To Todo",
   "edit": "Edit",
   "delete": "Delete",
   "home": "Home",
@@ -30,5 +31,9 @@
   "calendar": "Calendar",
   "profile": "Profile",
   "setting": "Setting",
+  "creators": "Creators:\n",
+  "cNames": "Amin Bitaraf & Mahdi Kafash\n\n",
+  "thanksTo": "a special thanks to:\n",
+  "tNames": "Mozhdeh Rezaei & Alireza Mousavi",
   "": ""
 }

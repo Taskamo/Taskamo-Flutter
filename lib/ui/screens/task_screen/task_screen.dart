@@ -1,18 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskamo/blocs/task_tab_controller/tab_controller_cubit.dart';
+import 'package:taskamo/ui/screens/task_screen/task_widget.dart';
 import 'package:taskamo/ui/widgets/appbar_widget/appbar_widget.dart';
 import 'package:taskamo/ui/widgets/bottom_navigation_widget/bottom_navigation_widget.dart';
+import 'package:taskamo/ui/widgets/drawer_widget/drawer_widget.dart';
 
 class TaskScreen extends StatelessWidget {
   const TaskScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      // appBar: const TaskamoAppbar().build(context),
-      body: const Center(
-        child: Text("Task screen"),
+    return BlocProvider(
+      create: (context) => TabControllerCubit(),
+      child: Scaffold(
+        endDrawer: const DrawerWidget(),
+        extendBody: true,
+        body: SafeArea(
+          child: Stack(
+            children: [
+              CustomScrollView(
+                slivers: [
+                  const TaskamoAppbar(),
+                  SliverList(
+                    delegate: SliverChildListDelegate(
+                      [
+                        const TaskTabBarWidget(),
+                        const TabViewWidget(),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              const Align(
+                alignment: Alignment.bottomCenter,
+                child: BottomNavigationWidget(activeIndex: 1),
+              ),
+            ],
+          ),
+        ),
       ),
-      bottomNavigationBar: const BottomNavigationWidget(activeIndex: 1),
     );
   }
 }
