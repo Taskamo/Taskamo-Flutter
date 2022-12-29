@@ -29,6 +29,7 @@ class TaskScreen extends StatelessWidget {
                       [
                         const TaskTabBarWidget(),
                         const TabViewWidget(),
+                        const SizedBox(height: 75),
                       ],
                     ),
                   ),

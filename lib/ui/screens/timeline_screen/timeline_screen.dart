@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:taskamo/ui/screens/timeline_screen/timeline_widget.dart';
 import 'package:taskamo/ui/widgets/bottom_navigation_widget/bottom_navigation_widget.dart';
+import 'package:taskamo/ui/widgets/calendar_controller/calendar_contrller.dart';
 import 'package:taskamo/ui/widgets/drawer_widget/drawer_widget.dart';
 import 'package:taskamo/ui/widgets/icon_widget/icon_widget.dart';
 import 'package:taskamo/utils/categories/icon_categories.dart';

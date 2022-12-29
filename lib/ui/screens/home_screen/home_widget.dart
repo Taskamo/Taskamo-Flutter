@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localization/localization.dart';
-import 'package:table_calendar/table_calendar.dart';
+import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
 import 'package:taskamo/blocs/status_dropdown/todo_status_dropdown_cubit.dart';
 import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
 import 'package:taskamo/ui/widgets/dropdown_widget/dropdown_widget.dart';
+import 'package:taskamo/ui/widgets/get_days_of_the_week_widget/get_days_of_the_week.dart';
 import 'package:taskamo/ui/widgets/popup_menu_widget/popup_menu_widget.dart';
 import 'package:taskamo/ui/widgets/task_widget/task_widget.dart';
 import 'package:taskamo/ui/widgets/time_widget/time_widget.dart';
 import 'package:taskamo/utils/categories/locale_categories.dart';
 import 'package:taskamo/utils/enums/todo_enums.dart';
-import 'package:taskamo/utils/functions/calendar_date_time/calendar_date_time.dart';
 import 'package:taskamo/utils/styles/colors/taskamo_colors.dart';
 import 'package:taskamo/utils/styles/decoration/decoration.dart';
 
@@ -84,16 +84,6 @@ class HomeTimelineWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 const TimelinePopupMenuWidget(),
-                // IconButtonWidget(
-                //   widget: const IconWidget(
-                //     url: TaskamoIconCategories.more,
-                //     height: 24,
-                //     width: 24,
-                //   ),
-                //   onPressed: () {
-                //     //TODO here
-                //   },
-                // ),
               ],
             ),
             Padding(
@@ -160,107 +150,37 @@ class HomeCalendarWidget extends StatelessWidget {
             const MonthWidget(),
             const SizedBox(height: 24),
             const GetDaysOfTheWeekWidget(),
-            TableCalendar(
-              availableGestures: AvailableGestures.none,
-              firstDay: TaskamoDateTime.getStartOfMonth(),
-              lastDay: TaskamoDateTime.getEndOfMonth(),
-              focusedDay: DateTime.now(),
-              startingDayOfWeek: StartingDayOfWeek.saturday,
-              daysOfWeekVisible: false,
-              headerVisible: false,
-              weekNumbersVisible: false,
-              weekendDays: const [
-                DateTime.friday,
-              ],
-              calendarStyle: CalendarStyle(
-                todayDecoration: const BoxDecoration(),
-                disabledTextStyle:
-                    Theme.of(context).textTheme.bodyMedium!.apply(
-                          color: TaskamoColors.secondaryText,
-                        ),
-                todayTextStyle: Theme.of(context).textTheme.bodyMedium!.apply(
-                      color: TaskamoColors.blue,
-                    ),
-                weekendTextStyle: Theme.of(context).textTheme.bodyMedium!.apply(
-                      color: TaskamoColors.red,
-                    ),
-                defaultTextStyle: Theme.of(context).textTheme.bodyMedium!,
+            SfCalendar(
+              view: CalendarView.month,
+              backgroundColor: Colors.transparent,
+              headerHeight: 0,
+              viewHeaderHeight: 0,
+              cellBorderColor: Colors.transparent,
+              monthViewSettings: MonthViewSettings(
+                monthCellStyle: MonthCellStyle(
+                  // todayBackgroundColor: TaskamoColors.blue.withOpacity(0.15),
+                  textStyle: Theme.of(context).textTheme.bodyMedium,
+                  trailingDatesTextStyle: Theme.of(context).textTheme.bodyMedium!.apply(
+                    color: TaskamoColors.secondaryText,
+                  ),
+                  leadingDatesTextStyle: Theme.of(context).textTheme.bodyMedium!.apply(
+                    color: TaskamoColors.secondaryText,
+                  ),
+                ),
               ),
+              firstDayOfWeek: 6,
+              allowedViews: const [
+                CalendarView.day,
+              ],
+              showCurrentTimeIndicator: true,
+              todayHighlightColor: Theme.of(context).primaryColor.withOpacity(0.05),
+              todayTextStyle: Theme.of(context).textTheme.bodyMedium!.apply(
+                color: TaskamoColors.blue,
+              ),
+
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class GetDaysOfTheWeekWidget extends StatelessWidget {
-  const GetDaysOfTheWeekWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Transform.rotate(
-            angle: -3.14 / 4,
-            alignment: Alignment.topLeft,
-            child: Text(
-              TaskamoLocaleCategories.sat.i18n(),
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-          Transform.rotate(
-            angle: -3.14 / 4,
-            alignment: Alignment.topLeft,
-            child: Text(
-              TaskamoLocaleCategories.sun.i18n(),
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-          Transform.rotate(
-            angle: -3.14 / 4,
-            alignment: Alignment.topLeft,
-            child: Text(
-              TaskamoLocaleCategories.mon.i18n(),
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-          Transform.rotate(
-            angle: -3.14 / 4,
-            alignment: Alignment.topLeft,
-            child: Text(
-              TaskamoLocaleCategories.tue.i18n(),
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-          Transform.rotate(
-            angle: -3.14 / 4,
-            alignment: Alignment.topLeft,
-            child: Text(
-              TaskamoLocaleCategories.wed.i18n(),
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-          Transform.rotate(
-            angle: -3.14 / 4,
-            alignment: Alignment.topLeft,
-            child: Text(
-              TaskamoLocaleCategories.thu.i18n(),
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-          Transform.rotate(
-            angle: -3.14 / 4,
-            alignment: Alignment.topLeft,
-            child: Text(
-              TaskamoLocaleCategories.fri.i18n(),
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-        ],
       ),
     );
   }

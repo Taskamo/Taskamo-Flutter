@@ -7,7 +7,6 @@ import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
 import 'package:taskamo/ui/widgets/task_widget/task_widget.dart';
 import 'package:taskamo/utils/categories/locale_categories.dart';
 import 'package:taskamo/utils/enums/todo_enums.dart';
-import 'package:taskamo/utils/styles/colors/taskamo_colors.dart';
 import 'package:taskamo/utils/styles/decoration/decoration.dart';
 
 class TaskTabBarWidget extends StatelessWidget {
