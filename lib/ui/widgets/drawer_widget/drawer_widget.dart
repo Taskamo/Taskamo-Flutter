@@ -136,7 +136,17 @@ class DrawerWidget extends StatelessWidget {
                           style: Theme.of(context).textTheme.titleMedium!.apply(
                                 color: TaskamoColors.secondaryText,
                               ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Scaffold.of(context).closeEndDrawer();
+                            Future.delayed(
+                              const Duration(milliseconds: 200),
+                              () {
+                                context
+                                    .read<TaskamoRouterBloc>()
+                                    .add(HomeScreenEvent());
+                              },
+                            );
+                          },
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -149,7 +159,17 @@ class DrawerWidget extends StatelessWidget {
                           style: Theme.of(context).textTheme.titleMedium!.apply(
                                 color: TaskamoColors.secondaryText,
                               ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Scaffold.of(context).closeEndDrawer();
+                            Future.delayed(
+                              const Duration(milliseconds: 200),
+                              () {
+                                context
+                                    .read<TaskamoRouterBloc>()
+                                    .add(TimelineScreenEvent());
+                              },
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -171,7 +191,17 @@ class DrawerWidget extends StatelessWidget {
                           style: Theme.of(context).textTheme.titleMedium!.apply(
                                 color: TaskamoColors.secondaryText,
                               ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Scaffold.of(context).closeEndDrawer();
+                            Future.delayed(
+                              const Duration(milliseconds: 200),
+                              () {
+                                context
+                                    .read<TaskamoRouterBloc>()
+                                    .add(EventScreenEvent());
+                              },
+                            );
+                          },
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -184,7 +214,17 @@ class DrawerWidget extends StatelessWidget {
                           style: Theme.of(context).textTheme.titleMedium!.apply(
                                 color: TaskamoColors.secondaryText,
                               ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Scaffold.of(context).closeEndDrawer();
+                            Future.delayed(
+                              const Duration(milliseconds: 200),
+                              () {
+                                context
+                                    .read<TaskamoRouterBloc>()
+                                    .add(TaskScreenEvent());
+                              },
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -202,7 +242,17 @@ class DrawerWidget extends StatelessWidget {
                     style: Theme.of(context).textTheme.titleMedium!.apply(
                           color: TaskamoColors.secondaryText,
                         ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Scaffold.of(context).closeEndDrawer();
+                      Future.delayed(
+                        const Duration(milliseconds: 200),
+                        () {
+                          context
+                              .read<TaskamoRouterBloc>()
+                              .add(CalendarScreenEvent());
+                        },
+                      );
+                    },
                   ),
                 ),
                 const Expanded(child: SizedBox()),
