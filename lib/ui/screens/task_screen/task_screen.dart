@@ -5,6 +5,8 @@ import 'package:taskamo/ui/screens/task_screen/task_widget.dart';
 import 'package:taskamo/ui/widgets/appbar_widget/appbar_widget.dart';
 import 'package:taskamo/ui/widgets/bottom_navigation_widget/bottom_navigation_widget.dart';
 import 'package:taskamo/ui/widgets/drawer_widget/drawer_widget.dart';
+import 'package:taskamo/ui/widgets/icon_widget/icon_widget.dart';
+import 'package:taskamo/utils/categories/icon_categories.dart';
 
 class TaskScreen extends StatelessWidget {
   const TaskScreen({Key? key}) : super(key: key);
@@ -35,6 +37,19 @@ class TaskScreen extends StatelessWidget {
               const Align(
                 alignment: Alignment.bottomCenter,
                 child: BottomNavigationWidget(activeIndex: 1),
+              ),
+              Positioned(
+                bottom: 88,
+                right: 32,
+                child: FloatingActionButton(
+                  onPressed: () {},
+                  backgroundColor: Theme.of(context).primaryColor,
+                  child: const IconWidget(
+                    url: TaskamoIconCategories.plus,
+                    height: 24,
+                    width: 24,
+                  ),
+                ),
               ),
             ],
           ),

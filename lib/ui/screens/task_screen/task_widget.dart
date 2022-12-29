@@ -131,11 +131,22 @@ class TabViewWidget extends StatelessWidget {
       result.add(const TodoTodoItem());
       result.add(const TodoTodoItem());
       result.add(const TodoTodoItem());
+      result.add(const TodoTodoItem());
+      result.add(const TodoTodoItem());
+      result.add(const TodoTodoItem());
     } else if (status == TodoStatus.doing) {
       result.add(const DoingTodoItem());
       result.add(const DoingTodoItem());
       result.add(const DoingTodoItem());
+      result.add(const DoingTodoItem());
     } else {
+      result.add(const DoneTodoItem());
+      result.add(const DoneTodoItem());
+      result.add(const DoneTodoItem());
+      result.add(const DoneTodoItem());
+      result.add(const DoneTodoItem());
+      result.add(const DoneTodoItem());
+      result.add(const DoneTodoItem());
       result.add(const DoneTodoItem());
       result.add(const DoneTodoItem());
       result.add(const DoneTodoItem());
