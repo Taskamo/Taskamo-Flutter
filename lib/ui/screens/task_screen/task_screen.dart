@@ -40,8 +40,8 @@ class TaskScreen extends StatelessWidget {
                 child: BottomNavigationWidget(activeIndex: 1),
               ),
               Positioned(
-                bottom: 88,
-                right: 32,
+                bottom: 98,
+                right: 16,
                 child: FloatingActionButton(
                   onPressed: () {},
                   backgroundColor: Theme.of(context).primaryColor,
