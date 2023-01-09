@@ -10,20 +10,22 @@ class LandingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: BlocBuilder<LoadedImageCubit, LoadedImageState>(
-          builder: (context, state) {
-            if (state is LoadedImage){
-              return ImageWidget(
-                image: state.taskamoTypo,
-                height: 200,
-                width: 200,
-              );
-            }else{
-              return const SizedBox();
-            }
-          },
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: BlocBuilder<LoadedImageCubit, LoadedImageState>(
+            builder: (context, state) {
+              if (state is LoadedImage){
+                return ImageWidget(
+                  image: state.taskamoTypo,
+                  height: 200,
+                  width: 200,
+                );
+              }else{
+                return const SizedBox();
+              }
+            },
+          ),
         ),
       ),
     );

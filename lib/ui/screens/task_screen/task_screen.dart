@@ -15,11 +15,11 @@ class TaskScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => TabControllerCubit(),
-      child: Scaffold(
-        endDrawer: const DrawerWidget(),
-        extendBody: true,
-        body: SafeArea(
-          child: Stack(
+      child: SafeArea(
+        child: Scaffold(
+          endDrawer: const DrawerWidget(),
+          extendBody: true,
+          body: Stack(
             children: [
               CustomScrollView(
                 slivers: [

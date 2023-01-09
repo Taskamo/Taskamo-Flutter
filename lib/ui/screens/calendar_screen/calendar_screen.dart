@@ -33,11 +33,11 @@ class _CalendarScreenState extends State<CalendarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      endDrawer: const DrawerWidget(),
-      extendBody: true,
-      body: SafeArea(
-        child: Stack(
+    return SafeArea(
+      child: Scaffold(
+        endDrawer: const DrawerWidget(),
+        extendBody: true,
+        body: Stack(
           children: [
             CustomScrollView(
               slivers: [
