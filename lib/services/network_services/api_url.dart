@@ -6,6 +6,6 @@ class GetUrl {
   }
 
   String versionUrl() {
-    return "/api/v1/";
+    return "/api";
   }
 }

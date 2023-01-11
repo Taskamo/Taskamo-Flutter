@@ -4,5 +4,5 @@ abstract class BaseConfig {
 
 class ProductionConfig extends BaseConfig {
   @override
-  String get baseUrl => "https://panel.darato.ir";
+  String get baseUrl => "http://taskamo.com";
 }
