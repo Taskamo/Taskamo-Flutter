@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
 import 'package:taskamo/data-models/login/login_req_model.dart';
 import 'package:taskamo/data-models/token/token_model.dart';
 import 'package:taskamo/services/local_services/hive_client.dart';
@@ -49,11 +48,11 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     );
     on<LoginSubmitEvent>(
       (event, emit) async {
+        emit(LoginLoadingState());
         ApiHandler api = await TaskamoApiClient.post(
           auth: false,
           TaskamoAPICategories.login,
           body: loginReqModelToMap(loginReqModel),
-          // query: loginReqModelToMap(loginReqModel),
         );
         if (api.status == ResponseStatus.success) {
           TokenModel tokenModel = tokenModelFromMap(api.data);
@@ -62,6 +61,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             value: tokenModel.data.token,
           );
           emit(LoginDoneState());
+        } else {
+          emit(checkValidations());
         }
       },
     );

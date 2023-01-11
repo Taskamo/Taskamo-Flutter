@@ -2,10 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localization/localization.dart';
-import 'package:logger/logger.dart';
 import 'package:taskamo/blocs/api/login/login_bloc.dart';
 import 'package:taskamo/blocs/images/loaded_image_cubit.dart';
 import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
+import 'package:taskamo/ui/screens/landing_screen/landing_screen.dart';
 import 'package:taskamo/ui/widgets/appbar_widget/appbar_widget.dart';
 import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
@@ -40,6 +40,9 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         },
         builder: (context, state) {
+          if (state is LoginLoadingState) {
+            return const LandingScreen();
+          }
           return GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: SafeArea(

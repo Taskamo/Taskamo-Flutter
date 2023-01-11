@@ -1,5 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskamo/services/local_services/hive_client.dart';
+import 'package:taskamo/services/network_services/api_client.dart';
+import 'package:taskamo/services/network_services/api_handler.dart';
+import 'package:taskamo/utils/categories/api_categories.dart';
 import 'package:taskamo/utils/categories/hive_categories.dart';
 
 part 'taskamo_router_event.dart';
@@ -68,10 +71,15 @@ class TaskamoRouterBloc extends Bloc<TaskamoRouterEvent, TaskamoRouterState> {
     );
     on<LogoutEvent>(
       (event, emit) async {
-        await TaskamoHiveClient.delete(
-          key: TaskamoHiveCategories.accessToken,
+        ApiHandler api = await TaskamoApiClient.post(
+          TaskamoAPICategories.logout,
         );
-        add(LandingScreenEvent());
+        if (api.status == ResponseStatus.success) {
+          await TaskamoHiveClient.delete(
+            key: TaskamoHiveCategories.accessToken,
+          );
+          add(LandingScreenEvent());
+        }
       },
     );
   }
