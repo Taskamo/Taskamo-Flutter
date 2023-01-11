@@ -109,7 +109,7 @@ class TabViewWidget extends StatelessWidget {
       builder: (context, state) {
         return DecorationWidget(
           margin: const EdgeInsets.fromLTRB(8, 4, 8, 8),
-          container: Container(
+          child: Container(
             decoration: TaskamoDecoration.decoration,
             padding: const EdgeInsets.symmetric(
               horizontal: 12,

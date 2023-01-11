@@ -20,7 +20,7 @@ class TaskamoAppbar extends StatelessWidget {
         floating: true,
         actions: <Widget>[Container()],
         flexibleSpace: DecorationWidget(
-          container: Container(
+          child: Container(
             padding: const EdgeInsets.only(
               left: 16,
             ),

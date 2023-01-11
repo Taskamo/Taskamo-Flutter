@@ -40,7 +40,7 @@ class _CalendarRowControllerState extends State<CalendarRowController> {
       child: Row(
         children: [
           DecorationWidget(
-            container: ButtonWidget(
+            child: ButtonWidget(
               color: Theme.of(context).backgroundColor,
               widget: const IconWidget(
                 url: TaskamoIconCategories.arrowLeftSmall,
@@ -59,7 +59,7 @@ class _CalendarRowControllerState extends State<CalendarRowController> {
           Expanded(
             child: DecorationWidget(
               margin: const EdgeInsets.symmetric(horizontal: 4),
-              container: Container(
+              child: Container(
                 height: 48,
                 decoration: TaskamoDecoration.decoration,
                 child: Center(
@@ -72,7 +72,7 @@ class _CalendarRowControllerState extends State<CalendarRowController> {
             ),
           ),
           DecorationWidget(
-            container: ButtonWidget(
+            child: ButtonWidget(
               color: Theme.of(context).backgroundColor,
               widget: const IconWidget(
                 url: TaskamoIconCategories.arrowRightSmall,

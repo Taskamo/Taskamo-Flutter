@@ -4,10 +4,10 @@ import 'package:taskamo/utils/styles/colors/taskamo_colors.dart';
 class DecorationWidget extends StatelessWidget {
   const DecorationWidget({
     Key? key,
-    required this.container,
+    required this.child,
     this.margin,
   }) : super(key: key);
-  final Widget container;
+  final Widget child;
   final EdgeInsets? margin;
 
   @override
@@ -19,7 +19,7 @@ class DecorationWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         gradient: TaskamoColors.backgroundGradient,
       ),
-      child: container,
+      child: child,
     );
   }
 }

@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       hasScrollBody: false,
                       child: DecorationWidget(
                         margin: const EdgeInsets.all(8),
-                        container: Container(
+                        child: Container(
                           padding: const EdgeInsets.symmetric(
                             horizontal: 8,
                             vertical: 32,

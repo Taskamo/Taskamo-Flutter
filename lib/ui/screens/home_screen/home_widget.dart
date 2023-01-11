@@ -23,7 +23,7 @@ class HomeEventWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecorationWidget(
       margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      container: Container(
+      child: Container(
         decoration: TaskamoDecoration.decoration,
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -67,7 +67,7 @@ class HomeTimelineWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecorationWidget(
       margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      container: Container(
+      child: Container(
         decoration: TaskamoDecoration.decoration,
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -138,7 +138,7 @@ class HomeCalendarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecorationWidget(
       margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      container: Container(
+      child: Container(
         decoration: TaskamoDecoration.decoration,
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -200,7 +200,7 @@ class HomeTaskWidget extends StatelessWidget {
         builder: (context, state) {
           return DecorationWidget(
             margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-            container: Container(
+            child: Container(
               decoration: TaskamoDecoration.decoration,
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,

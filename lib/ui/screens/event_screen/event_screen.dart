@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskamo/ui/screens/event_screen/event_widget.dart';
 import 'package:taskamo/ui/widgets/appbar_widget/appbar_widget.dart';
 import 'package:taskamo/ui/widgets/bottom_navigation_widget/bottom_navigation_widget.dart';
 import 'package:taskamo/ui/widgets/drawer_widget/drawer_widget.dart';
@@ -22,6 +23,7 @@ class EventScreen extends StatelessWidget {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
+                      const Events(),
                       const SizedBox(height: 75),
                     ],
                   ),

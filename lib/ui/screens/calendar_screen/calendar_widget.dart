@@ -12,7 +12,7 @@ class CalendarEventOfMonthWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecorationWidget(
       margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      container: Container(
+      child: Container(
         decoration: TaskamoDecoration.decoration,
         padding: const EdgeInsets.all(4),
         child: Column(
@@ -113,7 +113,7 @@ class CalendarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecorationWidget(
       margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-      container: Container(
+      child: Container(
         decoration: TaskamoDecoration.decoration,
         padding: const EdgeInsets.symmetric(
           horizontal: 16,

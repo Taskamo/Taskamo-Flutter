@@ -454,7 +454,7 @@ class DrawerAppbarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DecorationWidget(
-      container: Container(
+      child: Container(
         padding: const EdgeInsets.only(
           left: 16,
         ),

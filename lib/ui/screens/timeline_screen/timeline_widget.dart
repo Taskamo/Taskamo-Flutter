@@ -21,7 +21,7 @@ class TimelineAppbar extends StatelessWidget {
       actions: <Widget>[Container()],
       flexibleSpace: DecorationWidget(
         margin: const EdgeInsets.all(8),
-        container: Container(
+        child: Container(
           padding: const EdgeInsets.only(
             left: 16,
           ),
@@ -68,7 +68,7 @@ class TimelineWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecorationWidget(
       margin: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-      container: Container(
+      child: Container(
         decoration: TaskamoDecoration.decoration,
         child: SfCalendar(
           dataSource: _getDataSource(),

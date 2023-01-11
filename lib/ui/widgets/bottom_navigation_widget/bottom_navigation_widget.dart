@@ -35,7 +35,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   Widget build(BuildContext context) {
     return DecorationWidget(
       margin: const EdgeInsets.all(8),
-      container: FloatingNavbar(
+      child: FloatingNavbar(
         borderRadius: 8,
         selectedBackgroundColor: Colors.transparent,
         backgroundColor: Theme.of(context).backgroundColor,
