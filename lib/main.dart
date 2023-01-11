@@ -1,16 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taskamo/blocs/images/loaded_image_cubit.dart';
 import 'package:taskamo/screen_router.dart';
 import 'package:taskamo/services/local_services/hive_client.dart';
 import 'package:taskamo/utils/categories/image_categories.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskamo/utils/configs/config_environments.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ],
+  );
   await Hive.initFlutter();
   await TaskamoHiveClient.saveKey();
-
+  const String environment = String.fromEnvironment(
+    'ENVIRONMENT',
+    defaultValue: Environment.production,
+  );
+  Environment().initConfig(environment);
   runApp(
     const App(),
   );

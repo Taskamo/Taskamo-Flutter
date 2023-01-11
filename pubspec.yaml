@@ -25,6 +25,7 @@ dependencies:
   floating_bottom_navigation_bar: ^1.5.2
   dropdown_button2: ^1.8.2
   syncfusion_flutter_calendar: ^20.4.38
+  dio: ^4.0.6
   #  table_calendar: ^3.0.8
 #  calendar_view: ^1.0.1
 #  http: ^0.13.4
