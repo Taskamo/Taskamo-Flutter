@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
@@ -65,11 +64,11 @@ abstract class TaskamoApiClient {
               value.toString(),
             ),
           ),
-        )} \n query : $query \n statusCode : ${response.statusCode} \n body : ${utf8.decode(response.data)} ",
+        )} \n query : $query \n statusCode : ${response.statusCode} \n body : ${response.data} ",
       );
     } else {
       Logger().w(
-        "request: $header \n url : $finalUrl \n query : $query \n statusCode : ${response.statusCode} \n body : ${utf8.decode(response.data)} ",
+        "request: $header \n url : $finalUrl \n query : $query \n statusCode : ${response.statusCode} \n body : ${response.data} ",
       );
     }
     return responseData;

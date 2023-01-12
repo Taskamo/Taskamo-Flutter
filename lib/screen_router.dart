@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
+import 'package:taskamo/blocs/api/event/event_bloc.dart';
 import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
 import 'package:taskamo/ui/screens/calendar_screen/calendar_screen.dart';
 import 'package:taskamo/ui/screens/event_screen/event_screen.dart';
@@ -23,6 +24,9 @@ class TaskamoRouter extends StatelessWidget {
     LocalJsonLocalization.delegate.directories = ['locale'];
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => EventBloc(),
+        ),
         BlocProvider(
           create: (context) => TaskamoRouterBloc()..add(LandingScreenEvent()),
         ),

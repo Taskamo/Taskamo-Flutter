@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localization/localization.dart';
+import 'package:taskamo/blocs/api/event/event_bloc.dart';
+import 'package:taskamo/data-models/event/events.dart';
+import 'package:taskamo/ui/screens/create_screen/event.dart';
 import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
 import 'package:taskamo/utils/categories/locale_categories.dart';
@@ -11,43 +15,58 @@ class Events extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecorationWidget(
-      margin: const EdgeInsets.all(8),
-      child: Container(
-        padding: const EdgeInsets.all(4),
-        decoration: TaskamoDecoration.decoration,
-        child: Column(
-          children: _getEvents(),
-        ),
-      ),
+    return BlocBuilder<EventBloc, EventState>(
+      builder: (context, state) {
+        if (state is! EventsState) {
+          return const SizedBox();
+        } else {
+          return DecorationWidget(
+            margin: const EdgeInsets.all(8),
+            child: Container(
+              padding: const EdgeInsets.all(4),
+              decoration: TaskamoDecoration.decoration,
+              child: Column(
+                children: _getEvents(
+                  state.eventsModel,
+                ),
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 
-  List<Widget> _getEvents() {
+  List<Widget> _getEvents(EventsModel eventsModel) {
     List<Widget> result = [];
-    result.add(EventWidget());
-    result.add(EventWidget());
-    result.add(EventWidget());
+    for (var element in eventsModel.data) {
+      result.add(EventWidget(element));
+    }
     return result;
   }
 }
 
 class EventWidget extends StatelessWidget {
-  EventWidget({Key? key}) : super(key: key);
-  final List<String> months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const EventWidget(
+    this.event, {
+    Key? key,
+  }) : super(key: key);
+  final EventModel event;
+
+  // final List<String> months = [
+  //   "January",
+  //   "February",
+  //   "March",
+  //   "April",
+  //   "May",
+  //   "June",
+  //   "July",
+  //   "August",
+  //   "September",
+  //   "October",
+  //   "November",
+  //   "December",
+  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +89,7 @@ class EventWidget extends StatelessWidget {
                     color: TaskamoColors.white.withOpacity(0.1)),
                 child: Center(
                   child: Text(
-                    "11",
+                    "${event.day}",
                     style: Theme.of(context).textTheme.displaySmall,
                   ),
                 ),
@@ -78,12 +97,12 @@ class EventWidget extends StatelessWidget {
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  months[DateTime.now().month - 1],
+                  "${event.month}",
                   style: Theme.of(context).textTheme.displaySmall,
                 ),
               ),
               Text(
-                "4 days left",
+                "${event.dateAgo}",
                 style: Theme.of(context).textTheme.bodyMedium!.apply(
                       color: TaskamoColors.secondaryText,
                     ),
@@ -92,7 +111,7 @@ class EventWidget extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            "Amin's Birthday",
+            "${event.title}",
             style: Theme.of(context).textTheme.bodyMedium!.apply(
                   color: TaskamoColors.secondaryText,
                 ),
@@ -113,7 +132,10 @@ class EventWidget extends StatelessWidget {
                         color: TaskamoColors.blue,
                       ),
                   text: TaskamoLocaleCategories.delete.i18n(),
-                  onPressed: () {},
+                  onPressed: () {
+                    //TODO delete event (maybe modal?)
+                    //TODO refresh
+                  },
                 ),
               ),
               Expanded(
@@ -125,7 +147,15 @@ class EventWidget extends StatelessWidget {
                         color: TaskamoColors.blue,
                       ),
                   text: TaskamoLocaleCategories.edit.i18n(),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => UpdateEvent(
+                          eventModel: event,
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

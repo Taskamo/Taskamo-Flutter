@@ -10,10 +10,10 @@ class EventsModel {
     required this.data,
   });
 
-  final List<Datum> data;
+  final List<EventModel> data;
 
   factory EventsModel.fromMap(Map<String, dynamic> json) => EventsModel(
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromMap(x))),
+        data: List<EventModel>.from(json["data"].map((x) => EventModel.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
@@ -21,8 +21,8 @@ class EventsModel {
       };
 }
 
-class Datum {
-  Datum({
+class EventModel {
+  EventModel({
     this.id,
     this.title,
     this.dateAgo,
@@ -38,7 +38,7 @@ class Datum {
   final int? day;
   final int? year;
 
-  factory Datum.fromMap(Map<String, dynamic> json) => Datum(
+  factory EventModel.fromMap(Map<String, dynamic> json) => EventModel(
         id: json["id"],
         title: json["title"],
         dateAgo: json["date_ago"],

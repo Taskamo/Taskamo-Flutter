@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskamo/blocs/api/event/event_bloc.dart';
 import 'package:taskamo/ui/screens/event_screen/event_widget.dart';
 import 'package:taskamo/ui/widgets/appbar_widget/appbar_widget.dart';
 import 'package:taskamo/ui/widgets/bottom_navigation_widget/bottom_navigation_widget.dart';
@@ -6,8 +8,19 @@ import 'package:taskamo/ui/widgets/drawer_widget/drawer_widget.dart';
 import 'package:taskamo/ui/widgets/icon_widget/icon_widget.dart';
 import 'package:taskamo/utils/categories/icon_categories.dart';
 
-class EventScreen extends StatelessWidget {
+class EventScreen extends StatefulWidget {
   const EventScreen({Key? key}) : super(key: key);
+
+  @override
+  State<EventScreen> createState() => _EventScreenState();
+}
+
+class _EventScreenState extends State<EventScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<EventBloc>().add(GetEventsEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
