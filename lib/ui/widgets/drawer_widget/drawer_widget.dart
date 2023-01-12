@@ -130,12 +130,10 @@ class DrawerWidget extends StatelessWidget {
                       Expanded(
                         flex: 4,
                         child: TextButtonWidget(
-                          overlay: Colors.transparent,
+                          overlay: TaskamoColors.white.withOpacity(0.3),
                           color: TaskamoColors.white.withOpacity(0.15),
                           text: TaskamoLocaleCategories.home.i18n(),
-                          style: Theme.of(context).textTheme.titleMedium!.apply(
-                                color: TaskamoColors.secondaryText,
-                              ),
+                          style: Theme.of(context).textTheme.titleMedium,
                           onPressed: () {
                             Scaffold.of(context).closeEndDrawer();
                             Future.delayed(
@@ -153,12 +151,10 @@ class DrawerWidget extends StatelessWidget {
                       Expanded(
                         flex: 5,
                         child: TextButtonWidget(
-                          overlay: Colors.transparent,
+                          overlay: TaskamoColors.white.withOpacity(0.3),
                           color: TaskamoColors.white.withOpacity(0.15),
                           text: TaskamoLocaleCategories.timeLine.i18n(),
-                          style: Theme.of(context).textTheme.titleMedium!.apply(
-                                color: TaskamoColors.secondaryText,
-                              ),
+                          style: Theme.of(context).textTheme.titleMedium,
                           onPressed: () {
                             Scaffold.of(context).closeEndDrawer();
                             Future.delayed(
@@ -185,12 +181,10 @@ class DrawerWidget extends StatelessWidget {
                       Expanded(
                         flex: 5,
                         child: TextButtonWidget(
-                          overlay: Colors.transparent,
+                          overlay: TaskamoColors.white.withOpacity(0.3),
                           color: TaskamoColors.white.withOpacity(0.15),
                           text: TaskamoLocaleCategories.events.i18n(),
-                          style: Theme.of(context).textTheme.titleMedium!.apply(
-                                color: TaskamoColors.secondaryText,
-                              ),
+                          style: Theme.of(context).textTheme.titleMedium,
                           onPressed: () {
                             Scaffold.of(context).closeEndDrawer();
                             Future.delayed(
@@ -208,12 +202,10 @@ class DrawerWidget extends StatelessWidget {
                       Expanded(
                         flex: 4,
                         child: TextButtonWidget(
-                          overlay: Colors.transparent,
+                          overlay: TaskamoColors.white.withOpacity(0.3),
                           color: TaskamoColors.white.withOpacity(0.15),
                           text: TaskamoLocaleCategories.toDo.i18n(),
-                          style: Theme.of(context).textTheme.titleMedium!.apply(
-                                color: TaskamoColors.secondaryText,
-                              ),
+                          style: Theme.of(context).textTheme.titleMedium,
                           onPressed: () {
                             Scaffold.of(context).closeEndDrawer();
                             Future.delayed(
@@ -236,12 +228,10 @@ class DrawerWidget extends StatelessWidget {
                     vertical: 6,
                   ),
                   child: TextButtonWidget(
-                    overlay: Colors.transparent,
+                    overlay: TaskamoColors.white.withOpacity(0.3),
                     color: TaskamoColors.white.withOpacity(0.15),
                     text: TaskamoLocaleCategories.calendar.i18n(),
-                    style: Theme.of(context).textTheme.titleMedium!.apply(
-                          color: TaskamoColors.secondaryText,
-                        ),
+                    style: Theme.of(context).textTheme.titleMedium,
                     onPressed: () {
                       Scaffold.of(context).closeEndDrawer();
                       Future.delayed(
@@ -266,7 +256,7 @@ class DrawerWidget extends StatelessWidget {
                       Expanded(
                         flex: 3,
                         child: ButtonWidget(
-                          overlay: Colors.transparent,
+                          overlay: TaskamoColors.white.withOpacity(0.3),
                           color: TaskamoColors.white.withOpacity(0.15),
                           widget: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -289,14 +279,14 @@ class DrawerWidget extends StatelessWidget {
                               ),
                             ],
                           ),
-                          onPressed: () {},
+                          onPressed: null,
                         ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         flex: 3,
                         child: ButtonWidget(
-                          overlay: Colors.transparent,
+                          overlay: TaskamoColors.white.withOpacity(0.3),
                           color: TaskamoColors.white.withOpacity(0.15),
                           widget: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -305,17 +295,14 @@ class DrawerWidget extends StatelessWidget {
                                 url: TaskamoIconCategories.profile,
                                 height: 24,
                                 width: 24,
-                                color: TaskamoColors.secondaryText,
+                                color: TaskamoColors.white,
                               ),
                               const SizedBox(width: 8),
                               Text(
                                 TaskamoLocaleCategories.profile.i18n(),
                                 style: Theme.of(context)
                                     .textTheme
-                                    .titleMedium!
-                                    .apply(
-                                      color: TaskamoColors.secondaryText,
-                                    ),
+                                    .titleMedium,
                               ),
                             ],
                           ),
@@ -327,7 +314,7 @@ class DrawerWidget extends StatelessWidget {
                         flex: 1,
                         child: ButtonWidget(
                           color: TaskamoColors.red.withOpacity(0.1),
-                          overlay: Colors.transparent,
+                          overlay: Colors.red.withOpacity(0.3),
                           widget: const IconWidget(
                             url: TaskamoIconCategories.exit,
                             height: 24,
