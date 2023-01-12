@@ -32,7 +32,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (checkEmail() && checkPassword()) {
         return LoginValidState();
       }
-      return LoginInValidState();
+      return LoginInvalidState();
     }
 
     on<LoginDataChangedEvent>(
@@ -62,7 +62,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
           );
           emit(LoginDoneState());
         } else {
-          emit(checkValidations());
+          emit(LoginInvalidState());
         }
       },
     );

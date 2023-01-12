@@ -8,6 +8,7 @@ import 'package:taskamo/ui/screens/event_screen/event_screen.dart';
 import 'package:taskamo/ui/screens/home_screen/home_screen.dart';
 import 'package:taskamo/ui/screens/landing_screen/landing_screen.dart';
 import 'package:taskamo/ui/screens/login_screen/login_screen.dart';
+import 'package:taskamo/ui/screens/signup_screen/signup_screen.dart';
 import 'package:taskamo/ui/screens/task_screen/task_screen.dart';
 import 'package:taskamo/ui/screens/timeline_screen/timeline_screen.dart';
 import 'package:taskamo/utils/categories/locale_categories.dart';
@@ -48,7 +49,7 @@ class TaskamoRouter extends StatelessWidget {
         theme: TaskamoTheme.darkTheme,
         color: TaskamoColors.blue,
         debugShowCheckedModeBanner: false,
-        title: TaskamoLocaleCategories.name.i18n(),
+        title: TaskamoLocaleCategories.taskamo.i18n(),
         home: BlocConsumer<TaskamoRouterBloc, TaskamoRouterState>(
           listener: (context, state) {},
           builder: (context, state) {
@@ -60,6 +61,7 @@ class TaskamoRouter extends StatelessWidget {
               return const LoginScreen();
             } else if (state is SignupScreenState) {
               //signup
+              return const SignupScreen();
             } else if (state is HomeScreenState) {
               //home
               return const HomeScreen();
@@ -75,10 +77,8 @@ class TaskamoRouter extends StatelessWidget {
             } else if (state is CalendarScreenState) {
               //calendar
               return const CalendarScreen();
-            } else {
-              //loading
-
             }
+            //lost
             return const Scaffold();
           },
         ),

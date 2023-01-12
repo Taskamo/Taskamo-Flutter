@@ -10,4 +10,4 @@ class LoginLoadingState extends LoginState {}
 
 class LoginValidState extends LoginState {}
 
-class LoginInValidState extends LoginState {}
+class LoginInvalidState extends LoginState {}

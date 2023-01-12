@@ -1,7 +1,8 @@
 {
-  "name": "Taskamo",
+  "taskamo": "Taskamo",
   "login": "Login",
   "youDontHaveAccount": "You don't have account?",
+  "youHaveAccount": "You have account?",
   "signUp": "Sign up",
   "rememberMe": "Remember me",
   "email": "Email",
@@ -35,5 +36,8 @@
   "cNames": "Amin Bitaraf & Mahdi Kafash\n\n",
   "thanksTo": "a special thanks to:\n",
   "tNames": "Mozhdeh Rezaei & Alireza Mousavi",
+  "username": "Username",
+  "password": "Password",
+  "passwordConfirm": "Password Confirm",
   "": ""
 }

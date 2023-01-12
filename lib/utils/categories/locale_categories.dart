@@ -1,7 +1,8 @@
 abstract class TaskamoLocaleCategories {
-  static const String name = 'name';
+  static const String taskamo = 'taskamo';
   static const String login = 'login';
   static const String youDontHaveAccount = 'youDontHaveAccount';
+  static const String youHaveAccount = 'youHaveAccount';
   static const String signUp = 'signUp';
   static const String email = 'email';
   static const String password = 'password';
@@ -36,4 +37,6 @@ abstract class TaskamoLocaleCategories {
   static const String cNames = 'cNames';
   static const String thanksTo = 'thanksTo';
   static const String tNames = 'tNames';
+  static const String username = 'username';
+  static const String passwordConfirm = 'passwordConfirm';
 }

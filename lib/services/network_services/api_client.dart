@@ -9,9 +9,9 @@ import 'package:taskamo/services/network_services/api_url.dart';
 import 'package:taskamo/utils/categories/hive_categories.dart';
 
 abstract class TaskamoApiClient {
-  static String baseUrl = GetUrl().getUrlAPI();
-  static String versionUrl = GetUrl().versionUrl();
-  static Dio dio = Dio();
+  static final String _baseUrl = GetUrl().getUrlAPI();
+  static final String _versionUrl = GetUrl().versionUrl();
+  static final Dio _dio = Dio();
 
   static Future<Map<String, dynamic>> _getHeader() async {
     return {
@@ -38,10 +38,10 @@ abstract class TaskamoApiClient {
     bool auth = true,
     Map<String, dynamic> query = const {},
   }) async {
-    final finalUrl = '$baseUrl$versionUrl$url';
+    final finalUrl = '$_baseUrl$_versionUrl$url';
     Map<String, dynamic> header =
         auth ? await _getHeaderWithAccessToken() : await _getHeader();
-    Response response = await dio.get(
+    Response response = await _dio.get(
       finalUrl,
       options: Options(
         headers: header,
@@ -81,10 +81,10 @@ abstract class TaskamoApiClient {
     bool auth = true,
     Map<String, dynamic> query = const {},
   }) async {
-    final finalUrl = '$baseUrl$versionUrl$url';
+    final finalUrl = '$_baseUrl$_versionUrl$url';
     Map<String, dynamic> header =
         auth ? await _getHeaderWithAccessToken() : await _getHeader();
-    Response response = await dio.post(
+    Response response = await _dio.post(
       finalUrl,
       data: body,
       options: Options(

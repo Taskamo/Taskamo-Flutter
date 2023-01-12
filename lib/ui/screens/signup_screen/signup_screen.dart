@@ -2,7 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localization/localization.dart';
-import 'package:taskamo/blocs/api/login/login_bloc.dart';
+import 'package:taskamo/blocs/api/register/signup_bloc.dart';
 import 'package:taskamo/blocs/images/loaded_image_cubit.dart';
 import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
 import 'package:taskamo/ui/screens/landing_screen/landing_screen.dart';
@@ -18,29 +18,30 @@ import 'package:taskamo/utils/categories/locale_categories.dart';
 import 'package:taskamo/utils/styles/colors/taskamo_colors.dart';
 import 'package:taskamo/utils/styles/decoration/decoration.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   // bool _value = false;
   bool _obSecure = true;
+  bool _obSecureConfirm = true;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginBloc(),
-      child: BlocConsumer<LoginBloc, LoginState>(
+      create: (context) => SignupBloc(),
+      child: BlocConsumer<SignupBloc, SignupState>(
         listener: (context, state) {
-          if (state is LoginDoneState) {
+          if (state is SignupDoneState) {
             context.read<TaskamoRouterBloc>().add(HomeScreenEvent());
           }
         },
         builder: (context, state) {
-          if (state is LoginLoadingState) {
+          if (state is SignupLoadingState) {
             return const LandingScreen();
           }
           return GestureDetector(
@@ -76,16 +77,35 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   const SizedBox(height: 32),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 8,
+                                    ),
+                                    child: TextFieldWidget(
+                                      label: TaskamoLocaleCategories.username
+                                          .i18n(),
+                                      hint: TaskamoLocaleCategories.username
+                                          .i18n(),
+                                      onChange: (value) {
+                                        context.read<SignupBloc>().add(
+                                              SignupDataChangedEvent(
+                                                name: value,
+                                              ),
+                                            );
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 8,
+                                    ),
                                     child: TextFieldWidget(
                                       label:
                                           TaskamoLocaleCategories.email.i18n(),
                                       hint:
                                           TaskamoLocaleCategories.email.i18n(),
                                       onChange: (value) {
-                                        context.read<LoginBloc>().add(
-                                              LoginDataChangedEvent(
+                                        context.read<SignupBloc>().add(
+                                              SignupDataChangedEvent(
                                                 email: value,
                                               ),
                                             );
@@ -93,8 +113,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   ),
                                   Padding(
-                                    padding:
-                                        const EdgeInsets.symmetric(vertical: 8),
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 8,
+                                    ),
                                     child: TextFieldWidget(
                                       label: TaskamoLocaleCategories.password
                                           .i18n(),
@@ -102,8 +123,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                           .i18n(),
                                       obSecure: _obSecure,
                                       onChange: (value) {
-                                        context.read<LoginBloc>().add(
-                                              LoginDataChangedEvent(
+                                        context.read<SignupBloc>().add(
+                                              SignupDataChangedEvent(
                                                 password: value,
                                               ),
                                             );
@@ -141,18 +162,59 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                     ),
                                   ),
-                                  // CheckBoxWidget(
-                                  //   text: TaskamoLocaleCategories.rememberMe.i18n(),
-                                  //   onChanged: (value) {
-                                  //     setState(
-                                  //       () {
-                                  //         _value = value!;
-                                  //         //TODO here
-                                  //       },
-                                  //     );
-                                  //   },
-                                  //   value: _value,
-                                  // ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      vertical: 8,
+                                    ),
+                                    child: TextFieldWidget(
+                                      label: TaskamoLocaleCategories
+                                          .passwordConfirm
+                                          .i18n(),
+                                      hint: TaskamoLocaleCategories
+                                          .passwordConfirm
+                                          .i18n(),
+                                      obSecure: _obSecureConfirm,
+                                      onChange: (value) {
+                                        context.read<SignupBloc>().add(
+                                              SignupDataChangedEvent(
+                                                passwordConfirm: value,
+                                              ),
+                                            );
+                                      },
+                                      suffix: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Container(
+                                            margin: const EdgeInsets.symmetric(
+                                                horizontal: 8),
+                                            width: 1,
+                                            height: 20,
+                                            color: TaskamoColors.secondaryText,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              setState(
+                                                () {
+                                                  _obSecureConfirm =
+                                                      !_obSecureConfirm;
+                                                },
+                                              );
+                                            },
+                                            child: const IconWidget(
+                                              url: TaskamoIconCategories.eye,
+                                              height: 16,
+                                              width: 16,
+                                            ),
+                                          ),
+                                          const SizedBox(width: 16),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                   const Expanded(child: SizedBox()),
                                   RichText(
                                     textAlign: TextAlign.center,
@@ -163,14 +225,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                       children: [
                                         TextSpan(
                                           text: TaskamoLocaleCategories
-                                              .youDontHaveAccount
+                                              .youHaveAccount
                                               .i18n(),
                                         ),
                                         const TextSpan(
                                           text: '\n',
                                         ),
                                         TextSpan(
-                                          text: TaskamoLocaleCategories.signUp
+                                          text: TaskamoLocaleCategories.login
                                               .i18n(),
                                           style: Theme.of(context)
                                               .textTheme
@@ -184,7 +246,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             ..onTap = () {
                                               context
                                                   .read<TaskamoRouterBloc>()
-                                                  .add(SignupScreenEvent());
+                                                  .add(LoginScreenEvent());
                                             },
                                         ),
                                       ],
@@ -202,14 +264,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 bottomNavigationBar: Padding(
                   padding: MediaQuery.of(context).viewInsets,
                   child: TextButtonWidget(
-                    color: (state is LoginValidState)
+                    color: (state is SignupValidState)
                         ? TaskamoColors.blue
                         : TaskamoColors.blue.withOpacity(0.3),
                     margin: const EdgeInsets.all(8),
-                    text: TaskamoLocaleCategories.login.i18n(),
-                    onPressed: (state is LoginValidState)
+                    text: TaskamoLocaleCategories.signUp.i18n(),
+                    onPressed: (state is SignupValidState)
                         ? () {
-                            context.read<LoginBloc>().add(LoginSubmitEvent());
+                            context.read<SignupBloc>().add(SignupSubmitEvent());
                           }
                         : null,
                   ),
