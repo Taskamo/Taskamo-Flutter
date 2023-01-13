@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localization/localization.dart';
+import 'package:taskamo/blocs/api/profile/profile_bloc.dart';
 import 'package:taskamo/blocs/images/loaded_image_cubit.dart';
 import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
 import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
@@ -98,8 +99,19 @@ class LoginDrawerCreatorsWidget extends StatelessWidget {
   }
 }
 
-class DrawerWidget extends StatelessWidget {
+class DrawerWidget extends StatefulWidget {
   const DrawerWidget({Key? key}) : super(key: key);
+
+  @override
+  State<DrawerWidget> createState() => _DrawerWidgetState();
+}
+
+class _DrawerWidgetState extends State<DrawerWidget> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ProfileBloc>().add(GetProfileEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -300,9 +312,7 @@ class DrawerWidget extends StatelessWidget {
                               const SizedBox(width: 8),
                               Text(
                                 TaskamoLocaleCategories.profile.i18n(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium,
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
                             ],
                           ),
@@ -344,12 +354,16 @@ class DrawerNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
-      child: Text(
-        "Dipper",
-        style: Theme.of(context).textTheme.displayLarge,
-      ),
+    return BlocBuilder<ProfileBloc, ProfileState>(
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
+          child: Text(
+            (state is ProfileDataState) ? state.profileModel.name ?? "" : "",
+            style: Theme.of(context).textTheme.displayLarge,
+          ),
+        );
+      },
     );
   }
 }
