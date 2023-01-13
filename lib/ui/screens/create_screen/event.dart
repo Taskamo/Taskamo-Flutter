@@ -4,7 +4,7 @@ import 'package:localization/localization.dart';
 import 'package:taskamo/blocs/api/event/event_bloc.dart';
 import 'package:taskamo/data-models/event/create_event.dart';
 import 'package:taskamo/data-models/event/events.dart';
-import 'package:taskamo/ui/widgets/appbar_widget/appbar_widget.dart';
+import 'package:taskamo/ui/widgets/appbar_widget/create_appbar.dart';
 import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
 import 'package:taskamo/ui/widgets/drawer_widget/drawer_widget.dart';
@@ -83,10 +83,10 @@ class _UpdateEventState extends State<UpdateEvent> {
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: SafeArea(
         child: Scaffold(
-          endDrawer: const LoginDrawerWidget(),
+          endDrawer: const DrawerWidget(),
           body: CustomScrollView(
             slivers: [
-              const TaskamoAppbar(),
+              const CreateAppbar(),
               SliverFillRemaining(
                 hasScrollBody: false,
                 child: DecorationWidget(
