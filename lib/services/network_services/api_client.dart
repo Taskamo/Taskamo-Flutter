@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:taskamo/services/local_services/hive_client.dart';
@@ -74,6 +73,48 @@ abstract class TaskamoApiClient {
     return responseData;
   }
 
+  static Future<ApiHandler> delete(
+    String url, {
+    bool auth = true,
+    Map<String, dynamic> query = const {},
+  }) async {
+    final finalUrl = '$_baseUrl$_versionUrl$url';
+    Map<String, dynamic> header =
+        auth ? await _getHeaderWithAccessToken() : await _getHeader();
+    Response response = await _dio.delete(
+      finalUrl,
+      options: Options(
+        headers: header,
+      ),
+      queryParameters: query,
+    );
+
+    ApiHandler responseData = ApiHandler();
+    try {
+      responseData = StatusCode().checkResponseStatusCode(response);
+    } catch (e) {
+      responseData.setDataError(errorMassage: 'error');
+      Logger().e(responseData.massage);
+    }
+    if (responseData.status == ResponseStatus.success) {
+      Logger().wtf(
+        "request: $header \n url : ${Uri.parse(finalUrl).replace(
+          queryParameters: query.map(
+            (key, value) => MapEntry(
+              key,
+              value.toString(),
+            ),
+          ),
+        )} \n query : $query \n statusCode : ${response.statusCode} \n body : ${response.data} ",
+      );
+    } else {
+      Logger().w(
+        "request: $header \n url : $finalUrl \n query : $query \n statusCode : ${response.statusCode} \n body : ${response.data} ",
+      );
+    }
+    return responseData;
+  }
+
   static Future<ApiHandler> post(
     String url, {
     String? body,
@@ -84,6 +125,44 @@ abstract class TaskamoApiClient {
     Map<String, dynamic> header =
         auth ? await _getHeaderWithAccessToken() : await _getHeader();
     Response response = await _dio.post(
+      finalUrl,
+      data: body,
+      options: Options(
+        headers: header,
+      ),
+      queryParameters: query,
+    );
+
+    ApiHandler responseData = ApiHandler();
+    try {
+      responseData = StatusCode().checkResponseStatusCode(response);
+    } catch (e) {
+      Logger().e(e);
+      responseData.setDataError(errorMassage: 'error');
+    }
+    if (responseData.status == ResponseStatus.success) {
+      Logger().i(
+        "request: $header \n url : $finalUrl \n req: $body \n statusCode : ${response.statusCode} \n body : ${response.data}",
+      );
+    } else {
+      Logger().w(
+        "request: $header \n url : $finalUrl \n req: $body \n statusCode : ${response.statusCode} \n body : ${response.data}",
+      );
+    }
+
+    return responseData;
+  }
+
+  static Future<ApiHandler> put(
+    String url, {
+    String? body,
+    bool auth = true,
+    Map<String, dynamic> query = const {},
+  }) async {
+    final finalUrl = '$_baseUrl$_versionUrl$url';
+    Map<String, dynamic> header =
+        auth ? await _getHeaderWithAccessToken() : await _getHeader();
+    Response response = await _dio.put(
       finalUrl,
       data: body,
       options: Options(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskamo/blocs/api/event/event_bloc.dart';
+import 'package:taskamo/ui/screens/create_screen/event.dart';
 import 'package:taskamo/ui/screens/event_screen/event_widget.dart';
 import 'package:taskamo/ui/widgets/appbar_widget/appbar_widget.dart';
 import 'package:taskamo/ui/widgets/bottom_navigation_widget/bottom_navigation_widget.dart';
@@ -51,7 +52,13 @@ class _EventScreenState extends State<EventScreen> {
               bottom: 98,
               right: 16,
               child: FloatingActionButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const UpdateEvent(),
+                    ),
+                  );
+                },
                 backgroundColor: Theme.of(context).primaryColor,
                 child: const IconWidget(
                   url: TaskamoIconCategories.plus,

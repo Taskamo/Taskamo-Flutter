@@ -39,4 +39,9 @@ abstract class TaskamoLocaleCategories {
   static const String tNames = 'tNames';
   static const String username = 'username';
   static const String passwordConfirm = 'passwordConfirm';
+  static const String newEvent = 'newEvent';
+  static const String editEvent = 'editEvent';
+  static const String title = 'title';
+  static const String date = 'date';
+  static const String submit = 'submit';
 }

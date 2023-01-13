@@ -12,9 +12,11 @@ class DeleteEventEvent extends EventEvent {
 
 class EditEventEvent extends EventEvent {
   EditEventEvent({
+    required this.id,
     required this.eventModel,
   });
 
+  final int id;
   final CreateEventModel eventModel;
 }
 

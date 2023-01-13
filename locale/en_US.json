@@ -39,5 +39,10 @@
   "username": "Username",
   "password": "Password",
   "passwordConfirm": "Password Confirm",
+  "newEvent": "New Event",
+  "editEvent": "Edit Event",
+  "title": "Title",
+  "date": "Date",
+  "submit": "Submit",
   "": ""
 }

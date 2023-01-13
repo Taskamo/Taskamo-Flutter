@@ -18,7 +18,12 @@ class Events extends StatelessWidget {
     return BlocBuilder<EventBloc, EventState>(
       builder: (context, state) {
         if (state is! EventsState) {
-          return const SizedBox();
+          return const Center(
+            child: Padding(
+              padding: EdgeInsets.all(32),
+              child: CircularProgressIndicator(),
+            ),
+          );
         } else {
           return DecorationWidget(
             margin: const EdgeInsets.all(8),
@@ -133,8 +138,11 @@ class EventWidget extends StatelessWidget {
                       ),
                   text: TaskamoLocaleCategories.delete.i18n(),
                   onPressed: () {
-                    //TODO delete event (maybe modal?)
-                    //TODO refresh
+                    context.read<EventBloc>().add(
+                          DeleteEventEvent(
+                            id: event.id!,
+                          ),
+                        );
                   },
                 ),
               ),

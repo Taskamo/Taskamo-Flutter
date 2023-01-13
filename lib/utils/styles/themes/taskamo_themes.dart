@@ -23,14 +23,10 @@ abstract class TaskamoTheme {
       },
     ),
     inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(8)
-      )
-    ),
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8))),
     textButtonTheme: TextButtonThemeData(
       style: ButtonStyle(
-        backgroundColor:
-        MaterialStateProperty.all<Color>(TaskamoColors.blue),
+        backgroundColor: MaterialStateProperty.all<Color>(TaskamoColors.blue),
         overlayColor: MaterialStateProperty.all<Color>(
           TaskamoColors.onPress,
         ),
@@ -69,11 +65,11 @@ abstract class TaskamoTheme {
         fontSize: 14,
         color: TaskamoColors.white,
       ),
-      titleLarge:TextStyle(
+      titleLarge: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 20,
         color: TaskamoColors.white,
-      ) ,
+      ),
       titleMedium: TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 16,
