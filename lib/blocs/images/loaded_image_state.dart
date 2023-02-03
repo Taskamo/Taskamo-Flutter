@@ -9,11 +9,9 @@ class LoadedImage extends LoadedImageState {
     required this.taskamo,
     required this.taskamoTypo,
     required this.taskamoLogo,
-    required this.profile,
   });
 
   final Image taskamo;
   final Image taskamoTypo;
   final Image taskamoLogo;
-  final Image profile;
 }

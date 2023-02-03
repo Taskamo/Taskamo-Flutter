@@ -408,24 +408,28 @@ class DrawerAvatarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoadedImageCubit, LoadedImageState>(
+    return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.fromLTRB(0, 24, 0, 8),
           child: Stack(
             children: [
-              if (state is LoadedImage)
+              if (state is ProfileDataState &&
+                  state.profileModel.profile != null)
                 ClipRRect(
                   borderRadius: BorderRadius.circular(24),
-                  child: ImageWidget(
-                    image: state.profile,
+                  child: SizedBox(
                     height: 100,
                     width: 100,
+                    child: Image.network(
+                      "${state.profileModel.profile}",
+                      fit: BoxFit.fitHeight,
+                    ),
                   ),
                 ),
               Positioned(
-                right: 2,
-                bottom: 2,
+                right: 0,
+                bottom: 0,
                 child: Container(
                   height: 14,
                   width: 14,

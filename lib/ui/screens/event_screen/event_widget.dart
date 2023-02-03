@@ -25,6 +25,9 @@ class Events extends StatelessWidget {
             ),
           );
         } else {
+          if(state.eventsModel.data.isEmpty){
+            return const SizedBox(); //TODO empty state
+          }
           return DecorationWidget(
             margin: const EdgeInsets.all(8),
             child: Container(

@@ -10,14 +10,12 @@ class LoadedImageCubit extends Cubit<LoadedImageState> {
     required Image taskamo,
     required Image taskamoTypo,
     required Image taskamoLogo,
-    required Image profile,
   }) {
     emit(
       LoadedImage(
         taskamo: taskamo,
         taskamoTypo: taskamoTypo,
         taskamoLogo: taskamoLogo,
-        profile: profile,
       ),
     );
   }

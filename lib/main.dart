@@ -39,7 +39,6 @@ class _AppState extends State<App> {
   late Image taskamo;
   late Image taskamoTypo;
   late Image taskamoLogo;
-  late Image profile;
 
   @override
   void initState() {
@@ -47,7 +46,6 @@ class _AppState extends State<App> {
     taskamo = Image.asset(TaskamoImageCategories.taskamo);
     taskamoTypo = Image.asset(TaskamoImageCategories.taskamoTypo);
     taskamoLogo = Image.asset(TaskamoImageCategories.taskamoLogo);
-    profile = Image.asset(TaskamoImageCategories.profile);
   }
 
   @override
@@ -55,7 +53,6 @@ class _AppState extends State<App> {
     precacheImage(taskamo.image, context);
     precacheImage(taskamoTypo.image, context);
     precacheImage(taskamoLogo.image, context);
-    precacheImage(profile.image, context);
     super.didChangeDependencies();
   }
 
@@ -67,7 +64,6 @@ class _AppState extends State<App> {
           taskamo: taskamo,
           taskamoTypo: taskamoTypo,
           taskamoLogo: taskamoLogo,
-          profile: profile,
         ),
       child: const TaskamoRouter(),
     );
