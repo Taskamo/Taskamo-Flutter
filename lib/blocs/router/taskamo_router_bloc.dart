@@ -59,9 +59,9 @@ class TaskamoRouterBloc extends Bloc<TaskamoRouterEvent, TaskamoRouterState> {
         emit(EventScreenState());
       },
     );
-    on<TaskScreenEvent>(
+    on<TodoScreenEvent>(
       (event, emit) {
-        emit(TaskScreenState());
+        emit(TodoScreenState());
       },
     );
     on<CalendarScreenEvent>(

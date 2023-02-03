@@ -16,7 +16,7 @@ class TimelineScreenEvent extends TaskamoRouterEvent {}
 
 class EventScreenEvent extends TaskamoRouterEvent {}
 
-class TaskScreenEvent extends TaskamoRouterEvent {}
+class TodoScreenEvent extends TaskamoRouterEvent {}
 
 class CalendarScreenEvent extends TaskamoRouterEvent {}
 

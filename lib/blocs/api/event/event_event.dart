@@ -5,7 +5,9 @@ abstract class EventEvent {}
 class GetEventsEvent extends EventEvent {}
 
 class DeleteEventEvent extends EventEvent {
-  DeleteEventEvent({required this.id});
+  DeleteEventEvent({
+    required this.id,
+  });
 
   final int id;
 }

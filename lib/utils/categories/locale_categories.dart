@@ -44,4 +44,7 @@ abstract class TaskamoLocaleCategories {
   static const String title = 'title';
   static const String date = 'date';
   static const String submit = 'submit';
+  static const String description = 'description';
+  static const String newTodo = 'newTodo';
+  static const String editTodo = 'editTodo';
 }

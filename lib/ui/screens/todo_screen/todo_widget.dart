@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localization/localization.dart';
+import 'package:taskamo/blocs/api/todo/todo_bloc.dart';
 import 'package:taskamo/blocs/task_tab_controller/tab_controller_cubit.dart';
 import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
@@ -9,8 +10,8 @@ import 'package:taskamo/utils/categories/locale_categories.dart';
 import 'package:taskamo/utils/enums/todo_enums.dart';
 import 'package:taskamo/utils/styles/decoration/decoration.dart';
 
-class TaskTabBarWidget extends StatelessWidget {
-  const TaskTabBarWidget({Key? key}) : super(key: key);
+class TodoTabBarWidget extends StatelessWidget {
+  const TodoTabBarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -107,48 +108,72 @@ class TabViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TabControllerCubit, TabControllerState>(
       builder: (context, state) {
-        return DecorationWidget(
-          margin: const EdgeInsets.fromLTRB(8, 4, 8, 8),
-          child: Container(
-            decoration: TaskamoDecoration.decoration,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 8,
-            ),
-            child: Column(
-              children: _getTasks(state.tabStatus),
-            ),
-          ),
+        return BlocBuilder<TodoBloc, TodoState>(
+          builder: (context, todos) {
+            if (todos is! TodosState) {
+              return const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(32),
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            } else {
+              List<Widget> list = _getTasks(
+                todos: todos,
+                status: state.tabStatus,
+              );
+              if (list.isNotEmpty) {
+                return DecorationWidget(
+                  margin: const EdgeInsets.fromLTRB(8, 4, 8, 8),
+                  child: Container(
+                    decoration: TaskamoDecoration.decoration,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    child: Column(
+                      children: list,
+                    ),
+                  ),
+                );
+              }
+              return const SizedBox();
+            }
+          },
         );
       },
     );
   }
 
-  List<Widget> _getTasks(TodoStatus status) {
+  List<Widget> _getTasks({
+    required TodosState todos,
+    required TodoStatus status,
+  }) {
     List<Widget> result = [];
     if (status == TodoStatus.todo) {
-      result.add(const TodoTodoItem());
-      result.add(const TodoTodoItem());
-      result.add(const TodoTodoItem());
-      result.add(const TodoTodoItem());
-      result.add(const TodoTodoItem());
-      result.add(const TodoTodoItem());
+      for (var element in todos.todos) {
+        result.add(
+          TodoTodoItem(
+            todo: element,
+          ),
+        );
+      }
     } else if (status == TodoStatus.doing) {
-      result.add(const DoingTodoItem());
-      result.add(const DoingTodoItem());
-      result.add(const DoingTodoItem());
-      result.add(const DoingTodoItem());
+      for (var element in todos.doings) {
+        result.add(
+          DoingTodoItem(
+            todo: element,
+          ),
+        );
+      }
     } else {
-      result.add(const DoneTodoItem());
-      result.add(const DoneTodoItem());
-      result.add(const DoneTodoItem());
-      result.add(const DoneTodoItem());
-      result.add(const DoneTodoItem());
-      result.add(const DoneTodoItem());
-      result.add(const DoneTodoItem());
-      result.add(const DoneTodoItem());
-      result.add(const DoneTodoItem());
-      result.add(const DoneTodoItem());
+      for (var element in todos.dons) {
+        result.add(
+          DoneTodoItem(
+            todo: element,
+          ),
+        );
+      }
     }
     return result;
   }

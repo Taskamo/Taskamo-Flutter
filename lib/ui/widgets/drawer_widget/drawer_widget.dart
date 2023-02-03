@@ -225,7 +225,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               () {
                                 context
                                     .read<TaskamoRouterBloc>()
-                                    .add(TaskScreenEvent());
+                                    .add(TodoScreenEvent());
                               },
                             );
                           },

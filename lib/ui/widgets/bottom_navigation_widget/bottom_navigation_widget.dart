@@ -21,7 +21,7 @@ class BottomNavigationWidget extends StatefulWidget {
 class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   static final List<TaskamoRouterEvent> event = [
     CalendarScreenEvent(),
-    TaskScreenEvent(),
+    TodoScreenEvent(),
     EventScreenEvent(),
     TimelineScreenEvent(),
     HomeScreenEvent(),

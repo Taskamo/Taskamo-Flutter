@@ -4,4 +4,5 @@ abstract class TaskamoAPICategories {
   static const String register = "/register";
   static const String logout = "/logout";
   static const String event = "/event";
+  static const String todo = "/todo";
 }

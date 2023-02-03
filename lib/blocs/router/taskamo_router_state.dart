@@ -18,7 +18,7 @@ class TimeLineScreenState extends TaskamoRouterState {}
 
 class EventScreenState extends TaskamoRouterState {}
 
-class TaskScreenState extends TaskamoRouterState {}
+class TodoScreenState extends TaskamoRouterState {}
 
 class CalendarScreenState extends TaskamoRouterState {}
 

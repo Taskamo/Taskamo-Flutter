@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 import 'package:taskamo/blocs/api/event/event_bloc.dart';
 import 'package:taskamo/blocs/api/profile/profile_bloc.dart';
+import 'package:taskamo/blocs/api/todo/todo_bloc.dart';
 import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
 import 'package:taskamo/ui/screens/calendar_screen/calendar_screen.dart';
 import 'package:taskamo/ui/screens/event_screen/event_screen.dart';
@@ -11,8 +12,8 @@ import 'package:taskamo/ui/screens/home_screen/home_screen.dart';
 import 'package:taskamo/ui/screens/landing_screen/landing_screen.dart';
 import 'package:taskamo/ui/screens/login_screen/login_screen.dart';
 import 'package:taskamo/ui/screens/signup_screen/signup_screen.dart';
-import 'package:taskamo/ui/screens/task_screen/task_screen.dart';
 import 'package:taskamo/ui/screens/timeline_screen/timeline_screen.dart';
+import 'package:taskamo/ui/screens/todo_screen/todo_screen.dart';
 import 'package:taskamo/utils/categories/locale_categories.dart';
 import 'package:taskamo/utils/styles/colors/taskamo_colors.dart';
 import 'package:taskamo/utils/styles/themes/taskamo_themes.dart';
@@ -27,6 +28,9 @@ class TaskamoRouter extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => EventBloc(),
+        ),
+        BlocProvider(
+          create: (context) => TodoBloc(),
         ),
         BlocProvider(
           create: (context) => ProfileBloc(),
@@ -79,9 +83,9 @@ class TaskamoRouter extends StatelessWidget {
             } else if (state is EventScreenState) {
               //event
               return const EventScreen();
-            } else if (state is TaskScreenState) {
+            } else if (state is TodoScreenState) {
               //task
-              return const TaskScreen();
+              return const TodoScreen();
             } else if (state is CalendarScreenState) {
               //calendar
               return const CalendarScreen();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localization/localization.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:taskamo/blocs/api/todo/todo_bloc.dart';
 import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
 import 'package:taskamo/blocs/status_dropdown/todo_status_dropdown_cubit.dart';
 import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
@@ -160,12 +161,14 @@ class HomeCalendarWidget extends StatelessWidget {
                 monthCellStyle: MonthCellStyle(
                   // todayBackgroundColor: TaskamoColors.blue.withOpacity(0.15),
                   textStyle: Theme.of(context).textTheme.bodyMedium,
-                  trailingDatesTextStyle: Theme.of(context).textTheme.bodyMedium!.apply(
-                    color: TaskamoColors.secondaryText,
-                  ),
-                  leadingDatesTextStyle: Theme.of(context).textTheme.bodyMedium!.apply(
-                    color: TaskamoColors.secondaryText,
-                  ),
+                  trailingDatesTextStyle:
+                      Theme.of(context).textTheme.bodyMedium!.apply(
+                            color: TaskamoColors.secondaryText,
+                          ),
+                  leadingDatesTextStyle:
+                      Theme.of(context).textTheme.bodyMedium!.apply(
+                            color: TaskamoColors.secondaryText,
+                          ),
                 ),
               ),
               firstDayOfWeek: 6,
@@ -173,11 +176,11 @@ class HomeCalendarWidget extends StatelessWidget {
                 CalendarView.day,
               ],
               showCurrentTimeIndicator: true,
-              todayHighlightColor: Theme.of(context).primaryColor.withOpacity(0.05),
+              todayHighlightColor:
+                  Theme.of(context).primaryColor.withOpacity(0.05),
               todayTextStyle: Theme.of(context).textTheme.bodyMedium!.apply(
-                color: TaskamoColors.blue,
-              ),
-
+                    color: TaskamoColors.blue,
+                  ),
             ),
           ],
         ),
@@ -198,60 +201,83 @@ class HomeTaskWidget extends StatelessWidget {
         ),
       child: BlocBuilder<TodoStatusDropdownCubit, TodoStatusDropdownState>(
         builder: (context, state) {
-          return DecorationWidget(
-            margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-            child: Container(
-              decoration: TaskamoDecoration.decoration,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 12,
-              ),
-              child: Column(
-                children: [
-                  //dropdown todo.enum typed
-                  Row(
-                    children: const [
-                      Expanded(child: TodoStatusDropDown()),
-                      Expanded(child: SizedBox()),
+          return BlocBuilder<TodoBloc, TodoState>(
+            builder: (context, todos) {
+              return DecorationWidget(
+                margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                child: Container(
+                  decoration: TaskamoDecoration.decoration,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 12,
+                  ),
+                  child: Column(
+                    children: [
+                      //dropdown todo.enum typed
+                      Row(
+                        children: const [
+                          Expanded(child: TodoStatusDropDown()),
+                          Expanded(child: SizedBox()),
+                        ],
+                      ),
+                      if (state is TodoStatusDropdownResult &&
+                          todos is TodosState)
+                        ..._getTasks(
+                          todos: todos,
+                          status: state.status,
+                        ),
+                      InvisibleTextButtonWidget(
+                        text: TaskamoLocaleCategories.seeAllTodo.i18n(),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleSmall!
+                            .apply(color: TaskamoColors.blue),
+                        onPressed: () {
+                          context
+                              .read<TaskamoRouterBloc>()
+                              .add(TodoScreenEvent());
+                        },
+                      ),
                     ],
                   ),
-                  if (state is TodoStatusDropdownResult)
-                    ..._getTasks(
-                      state.status,
-                    ),
-                  InvisibleTextButtonWidget(
-                    text: TaskamoLocaleCategories.seeAllTodo.i18n(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleSmall!
-                        .apply(color: TaskamoColors.blue),
-                    onPressed: () {
-                      context.read<TaskamoRouterBloc>().add(TaskScreenEvent());
-                    },
-                  ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           );
         },
       ),
     );
   }
 
-  List<Widget> _getTasks(TodoStatus status) {
+  List<Widget> _getTasks({
+    required TodoStatus status,
+    required TodosState todos,
+  }) {
     List<Widget> result = [];
     if (status == TodoStatus.todo) {
-      result.add(const TodoTodoItem());
-      result.add(const TodoTodoItem());
-      result.add(const TodoTodoItem());
+      for (var element in todos.todos) {
+        result.add(
+          TodoTodoItem(
+            todo: element,
+          ),
+        );
+      }
     } else if (status == TodoStatus.doing) {
-      result.add(const DoingTodoItem());
-      result.add(const DoingTodoItem());
-      result.add(const DoingTodoItem());
+      for (var element in todos.doings) {
+        result.add(
+          DoingTodoItem(
+            todo: element,
+          ),
+        );
+      }
     } else {
-      result.add(const DoneTodoItem());
-      result.add(const DoneTodoItem());
-      result.add(const DoneTodoItem());
+      for (var element in todos.dons) {
+        result.add(
+          DoneTodoItem(
+            todo: element,
+          ),
+        );
+      }
     }
     return result;
   }

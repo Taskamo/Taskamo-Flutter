@@ -44,5 +44,8 @@
   "title": "Title",
   "date": "Date",
   "submit": "Submit",
+  "description": "Description",
+  "newTodo": "New Todo",
+  "editTodo": "Edit Todo",
   "": ""
 }
