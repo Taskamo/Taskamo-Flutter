@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:taskamo/data-models/profile/edit_profile_model.dart';
 import 'package:taskamo/data-models/profile/profile_model.dart';
 import 'package:taskamo/services/network_services/api_client.dart';
 import 'package:taskamo/services/network_services/api_handler.dart';
-import 'package:taskamo/services/network_services/api_url.dart';
 import 'package:taskamo/utils/categories/api_categories.dart';
 
 part 'profile_event.dart';
@@ -18,8 +18,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         );
         if (api.status == ResponseStatus.success) {
           ProfileModel profileModel = profileModelFromMap(api.data);
-          if(profileModel.profile != null){
-            String finalProfile = 'http://api.taskamo.com/profile/${profileModel.profile}';
+          if (profileModel.profile != null) {
+            String finalProfile =
+                'http://api.taskamo.com/profile/${profileModel.profile}';
             profileModel.profile = finalProfile;
           }
           emit(
@@ -28,6 +29,14 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
             ),
           );
         }
+      },
+    );
+    on<EditProfileEvent>(
+      (event, emit) async {
+        ApiHandler api = await TaskamoApiClient.post(
+          TaskamoAPICategories.profile,
+          body: editProfileModelToMap(event.editProfileModel),
+        );
       },
     );
   }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localization/localization.dart';
+import 'package:logger/logger.dart';
 import 'package:taskamo/blocs/api/profile/profile_bloc.dart';
 import 'package:taskamo/blocs/images/loaded_image_cubit.dart';
 import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
+import 'package:taskamo/ui/screens/create_screen/profile.dart';
 import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
 import 'package:taskamo/ui/widgets/icon_widget/icon_widget.dart';
@@ -316,7 +318,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                               ),
                             ],
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => const EditProfile(),
+                              ),
+                            );
+                            Scaffold.of(context).closeEndDrawer();
+                          },
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -410,43 +419,57 @@ class DrawerAvatarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileBloc, ProfileState>(
       builder: (context, state) {
-        return Padding(
-          padding: const EdgeInsets.fromLTRB(0, 24, 0, 8),
-          child: Stack(
-            children: [
-              if (state is ProfileDataState &&
-                  state.profileModel.profile != null)
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(24),
-                  child: SizedBox(
-                    height: 100,
-                    width: 100,
-                    child: Image.network(
-                      "${state.profileModel.profile}",
-                      fit: BoxFit.fitHeight,
-                    ),
-                  ),
-                ),
-              Positioned(
-                right: 0,
-                bottom: 0,
-                child: Container(
-                  height: 14,
-                  width: 14,
-                  padding: const EdgeInsets.all(2),
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: TaskamoColors.black,
-                  ),
-                  child: Container(
+        if (state is ProfileDataState) {
+          return Padding(
+            padding: const EdgeInsets.fromLTRB(0, 24, 0, 8),
+            child: SizedBox(
+              height: 100,
+              width: 100,
+              child: Stack(
+                children: [
+                  (state.profileModel.profile != null)
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(24),
+                          child: SizedBox(
+                            height: 100,
+                            width: 100,
+                            child: Image.network(
+                              "${state.profileModel.profile}",
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        )
+                      : const SizedBox(
+                          height: 100,
+                          width: 100,
+                        ),
+                  Positioned(
+                    right: 0,
+                    bottom: 0,
+                    child: Container(
+                      height: 14,
+                      width: 14,
+                      padding: const EdgeInsets.all(2),
                       decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: TaskamoColors.green,
-                  )),
-                ),
-              )
-            ],
-          ),
+                        shape: BoxShape.circle,
+                        color: TaskamoColors.black,
+                      ),
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: TaskamoColors.green,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        }
+        return const SizedBox(
+          height: 100,
+          width: 100,
         );
       },
     );

@@ -47,5 +47,7 @@
   "description": "Description",
   "newTodo": "New Todo",
   "editTodo": "Edit Todo",
+  "editProfile": "Edit Profile",
+  "selectPicture": "Select Picture",
   "": ""
 }
