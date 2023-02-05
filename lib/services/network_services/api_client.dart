@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 import 'package:taskamo/services/local_services/hive_client.dart';
@@ -5,6 +7,7 @@ import 'package:taskamo/services/network_services/api_handler.dart';
 import 'package:taskamo/services/network_services/api_status.dart';
 import 'package:taskamo/services/network_services/api_url.dart';
 import 'package:taskamo/utils/categories/hive_categories.dart';
+import 'package:http/http.dart' as http;
 
 abstract class TaskamoApiClient {
   static final String _baseUrl = GetUrl().getUrlAPI();
@@ -151,6 +154,24 @@ abstract class TaskamoApiClient {
     }
 
     return responseData;
+  }
+
+  static Future<void> postWithFile(
+      String url, Map<String, dynamic> data) async {
+    final finalUrl = '$_baseUrl$_versionUrl$url';
+
+    var request = http.MultipartRequest('POST', Uri.parse(finalUrl));
+    for (var key in data.keys) {
+      if (request.fields[key] != 'profile') {
+        request.fields[key] = data[key].toString();
+      }
+    }
+    request.headers['Authorization'] = await _getAccessToken();
+    request.headers['Content-Type'] = "application/json; charset=UTF-8";
+    File image = data["picture"];
+    request.files
+        .add(await http.MultipartFile.fromPath(("picture"), image.path));
+    await request.send();
   }
 
   static Future<ApiHandler> put(

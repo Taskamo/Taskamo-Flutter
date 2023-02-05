@@ -146,16 +146,27 @@ class _EditProfileState extends State<EditProfile> {
               text: TaskamoLocaleCategories.submit.i18n(),
               onPressed: (_getValidations())
                   ? () {
-                      EditProfileModel profileModel = EditProfileModel(
-                        name: name.text,
+                      if (image != null) {
+                        EditProfileModel profileModel = EditProfileModel(
+                          name: name.text,
+                          profile: image,
+                        );
+                        context.read<ProfileBloc>().add(
+                              EditProfileEvent(
+                                editProfileModel: profileModel,
+                              ),
+                            );
+                      } else {
+                        EditProfileModel profileModel = EditProfileModel(
+                          name: name.text,
+                        );
+                        context.read<ProfileBloc>().add(
+                              EditProfileNameEvent(
+                                editProfileModel: profileModel,
+                              ),
+                            );
+                      }
 
-                        // title: title.text,
-                      );
-                      context.read<ProfileBloc>().add(
-                            EditProfileEvent(
-                              editProfileModel: profileModel,
-                            ),
-                          );
                       Navigator.of(context).pop();
                     }
                   : null,

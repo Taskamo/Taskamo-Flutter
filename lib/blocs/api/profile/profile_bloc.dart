@@ -31,11 +31,23 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
         }
       },
     );
-    on<EditProfileEvent>(
+    on<EditProfileNameEvent>(
       (event, emit) async {
-        ApiHandler api = await TaskamoApiClient.post(
+        await TaskamoApiClient.post(
           TaskamoAPICategories.profile,
           body: editProfileModelToMap(event.editProfileModel),
+        );
+      },
+    );
+    on<EditProfileEvent>(
+      (event, emit) async {
+        await TaskamoApiClient.postWithFile(
+          TaskamoAPICategories.profile,
+          {
+            "profile": event.editProfileModel.profile,
+            "name": event.editProfileModel.name,
+            "_method": "PUT",
+          },
         );
       },
     );
