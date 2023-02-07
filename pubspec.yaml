@@ -37,8 +37,8 @@ dependencies:
 
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+#  flutter_test:
+#    sdk: flutter
   flutter_lints: ^2.0.0
 
 
@@ -52,7 +52,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/logo/
-    - assets/images/
+#    - assets/images/
     - locale/
 
   fonts:

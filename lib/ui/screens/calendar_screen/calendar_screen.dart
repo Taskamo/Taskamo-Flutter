@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:taskamo/ui/screens/calendar_screen/calendar_widget.dart';
+import 'package:taskamo/ui/screens/create_screen/event.dart';
 import 'package:taskamo/ui/widgets/appbar_widget/appbar_widget.dart';
 import 'package:taskamo/ui/widgets/bottom_navigation_widget/bottom_navigation_widget.dart';
 import 'package:taskamo/ui/widgets/calendar_controller/calendar_contrller.dart';
@@ -63,7 +64,13 @@ class _CalendarScreenState extends State<CalendarScreen> {
               bottom: 98,
               right: 16,
               child: FloatingActionButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const UpdateEvent(),
+                      ),
+                  );
+                  },
                 backgroundColor: Theme.of(context).primaryColor,
                 child: const IconWidget(
                   url: TaskamoIconCategories.plus,

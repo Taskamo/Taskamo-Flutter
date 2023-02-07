@@ -8,7 +8,7 @@ import 'package:taskamo/services/network_services/api_status.dart';
 import 'package:taskamo/services/network_services/api_url.dart';
 import 'package:taskamo/utils/categories/hive_categories.dart';
 import 'package:http/http.dart' as http;
-
++
 abstract class TaskamoApiClient {
   static final String _baseUrl = GetUrl().getUrlAPI();
   static final String _versionUrl = GetUrl().versionUrl();

@@ -5,6 +5,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:taskamo/blocs/api/todo/todo_bloc.dart';
 import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
 import 'package:taskamo/blocs/status_dropdown/todo_status_dropdown_cubit.dart';
+import 'package:taskamo/data-models/event/events.dart';
 import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
 import 'package:taskamo/ui/widgets/dropdown_widget/dropdown_widget.dart';
@@ -18,7 +19,11 @@ import 'package:taskamo/utils/styles/colors/taskamo_colors.dart';
 import 'package:taskamo/utils/styles/decoration/decoration.dart';
 
 class HomeEventWidget extends StatelessWidget {
-  const HomeEventWidget({Key? key}) : super(key: key);
+  const HomeEventWidget({
+    required this.event,
+    Key? key,
+  }) : super(key: key);
+  final EventModel event;
 
   @override
   Widget build(BuildContext context) {
@@ -41,14 +46,14 @@ class HomeEventWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 Text(
-                  "15 days left*",
+                  event.dateAgo ?? "",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],
             ),
             const SizedBox(height: 8),
             Text(
-              "Very very very very very very very very very very very very very large description*",
+              event.title ?? "",
               style: Theme.of(context).textTheme.bodySmall!.apply(
                     color: TaskamoColors.secondaryText,
                   ),

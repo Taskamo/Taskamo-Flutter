@@ -36,7 +36,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      const HomeEventWidget(),
+                      BlocBuilder<EventBloc, EventState>(
+                        builder: (context, state) {
+                          if (state is EventsState) {
+                            return HomeEventWidget(
+                              event: state.eventsModel.data.first,
+                            );
+                          }
+                          return const SizedBox();
+                        },
+                      ),
                       const HomeTimelineWidget(),
                       const HomeCalendarWidget(),
                       const HomeTaskWidget(),
