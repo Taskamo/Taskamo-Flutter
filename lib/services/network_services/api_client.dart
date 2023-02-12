@@ -8,7 +8,7 @@ import 'package:taskamo/services/network_services/api_status.dart';
 import 'package:taskamo/services/network_services/api_url.dart';
 import 'package:taskamo/utils/categories/hive_categories.dart';
 import 'package:http/http.dart' as http;
-+
+
 abstract class TaskamoApiClient {
   static final String _baseUrl = GetUrl().getUrlAPI();
   static final String _versionUrl = GetUrl().versionUrl();
@@ -156,22 +156,58 @@ abstract class TaskamoApiClient {
     return responseData;
   }
 
-  static Future<void> postWithFile(
-      String url, Map<String, dynamic> data) async {
-    final finalUrl = '$_baseUrl$_versionUrl$url';
+  static Future<void> postWithFile({
+    required String url,
+    required Map<String, dynamic> data,
+    required File image,
+  }) async {
+    Uri uri = Uri.parse('$_baseUrl$_versionUrl$url');
+    String accessToken = await _getAccessToken();
+    var request = http.MultipartRequest('POST', uri);
+    request = _jsonToFormData(request, data);
+    request.headers['Authorization'] =
+        'Bearer $accessToken'; //I hate you "Bearer" took me 2 hours to debug it
+    request.files.add(
+      await http.MultipartFile.fromPath(
+        "profile",
+        image.path,
+      ),
+    );
+    var response = await request.send();
 
-    var request = http.MultipartRequest('POST', Uri.parse(finalUrl));
+    // final finalUrl = '$_baseUrl$_versionUrl$url';
+    // Logger().i(data);
+    // var request = http.MultipartRequest('POST', Uri.parse(finalUrl));
+    // for (var key in data.keys) {
+    //   if (data[key] != 'profile') {
+    //     request.fields[key] = data[key].toString();
+    //   }
+    // }
+    // request.headers['Authorization'] = await _getAccessToken();
+    // request.headers['Content-Type'] = "application/json; charset=UTF-8";
+    // File image = data["profile"];
+    // request.files
+    //     .add(await http.MultipartFile.fromPath(("profile"), image.path));
+    // var res = await request.send();
+    if (response.statusCode == 200) {
+      Logger().i(
+        "request: ${request.headers} \n url : $uri \n req: ${request.fields} \n statusCode : ${response.statusCode}",
+      );
+    } else {
+      Logger().w(
+        "request: ${request.headers} \n url : $uri \n req: ${request.fields} \n statusCode : ${response.statusCode} ",
+      );
+    }
+  }
+
+  static _jsonToFormData(
+      http.MultipartRequest request, Map<String, dynamic> data) {
     for (var key in data.keys) {
-      if (request.fields[key] != 'profile') {
+      if (key != 'profile') {
         request.fields[key] = data[key].toString();
       }
     }
-    request.headers['Authorization'] = await _getAccessToken();
-    request.headers['Content-Type'] = "application/json; charset=UTF-8";
-    File image = data["picture"];
-    request.files
-        .add(await http.MultipartFile.fromPath(("picture"), image.path));
-    await request.send();
+    return request;
   }
 
   static Future<ApiHandler> put(

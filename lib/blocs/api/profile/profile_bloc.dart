@@ -42,12 +42,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<EditProfileEvent>(
       (event, emit) async {
         await TaskamoApiClient.postWithFile(
-          TaskamoAPICategories.profile,
-          {
+          url: TaskamoAPICategories.profile,
+          data: {
             "profile": event.editProfileModel.profile,
             "name": event.editProfileModel.name,
             "_method": "PUT",
           },
+          image: event.editProfileModel.profile!,
         );
       },
     );
