@@ -6,6 +6,7 @@ import 'package:taskamo/blocs/api/todo/todo_bloc.dart';
 import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
 import 'package:taskamo/blocs/status_dropdown/todo_status_dropdown_cubit.dart';
 import 'package:taskamo/data-models/event/events.dart';
+import 'package:taskamo/data-models/timeline/timelines.dart';
 import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
 import 'package:taskamo/ui/widgets/dropdown_widget/dropdown_widget.dart';
@@ -67,7 +68,9 @@ class HomeEventWidget extends StatelessWidget {
 }
 
 class HomeTimelineWidget extends StatelessWidget {
-  const HomeTimelineWidget({Key? key}) : super(key: key);
+  const HomeTimelineWidget({Key? key, required this.timeline})
+      : super(key: key);
+  final TimelineModel timeline;
 
   @override
   Widget build(BuildContext context) {
@@ -82,20 +85,20 @@ class HomeTimelineWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  TaskamoLocaleCategories.nextWork.i18n(),
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                const TimelinePopupMenuWidget(),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Text(
+            //       TaskamoLocaleCategories.nextWork.i18n(),
+            //       style: Theme.of(context).textTheme.headlineMedium,
+            //     ),
+            //     const TimelinePopupMenuWidget(),
+            //   ],
+            // ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Text(
-                "meeting with mehdi Einali* very very very very very very very very very very very very very very very very very very very very very ",
+                timeline.title,
                 style: Theme.of(context).textTheme.titleSmall!.apply(
                       color: TaskamoColors.blue,
                     ),
@@ -105,7 +108,7 @@ class HomeTimelineWidget extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
               child: Text(
-                "IDP planing* very very very very very very very very very very very very very very very very very very very very very very very very ",
+                timeline.description,
                 style: Theme.of(context).textTheme.bodySmall!.apply(
                       color: TaskamoColors.secondaryText,
                     ),
@@ -122,7 +125,7 @@ class HomeTimelineWidget extends StatelessWidget {
                     text: '${TaskamoLocaleCategories.startsAt.i18n()}  ',
                   ),
                   TextSpan(
-                    text: '01:34*',
+                    text: "${timeline.startAt.hour}:${timeline.startAt.minute}",
                     style: Theme.of(context).textTheme.bodyMedium!.apply(
                           color: TaskamoColors.blue,
                         ),

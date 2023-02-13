@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:taskamo/blocs/api/event/event_bloc.dart';
+import 'package:taskamo/blocs/api/timeline/timeline_bloc.dart';
 import 'package:taskamo/blocs/api/todo/todo_bloc.dart';
 import 'package:taskamo/ui/screens/home_screen/home_widget.dart';
 import 'package:taskamo/ui/widgets/appbar_widget/appbar_widget.dart';
@@ -17,8 +18,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
+    DateTime now = DateTime.now();
     context.read<TodoBloc>().add(GetTodosEvent());
     context.read<EventBloc>().add(GetEventsEvent());
+    context.read<TimelineBloc>().add(
+      GetTimelinesEvent(date: "${now.year}-${now.month}-${now.day}"),
+    );
     super.initState();
   }
 
@@ -38,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     [
                       BlocBuilder<EventBloc, EventState>(
                         builder: (context, state) {
-                          if (state is EventsState) {
+                          if (state is EventsState &&
+                              state.eventsModel.data.isNotEmpty) {
                             return HomeEventWidget(
                               event: state.eventsModel.data.first,
                             );
@@ -46,7 +52,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           return const SizedBox();
                         },
                       ),
-                      const HomeTimelineWidget(),
+                      BlocBuilder<TimelineBloc, TimelineState>(
+                        builder: (context, state) {
+                          if(state is TimelinesState && state.timelinesModel.data.isNotEmpty){
+                            return HomeTimelineWidget(timeline: state.timelinesModel.data.first);
+                          }
+                          return const SizedBox();
+
+                        },
+                      ),
                       const HomeCalendarWidget(),
                       const HomeTaskWidget(),
                       const SizedBox(height: 75),

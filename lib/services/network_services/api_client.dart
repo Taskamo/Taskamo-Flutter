@@ -49,7 +49,6 @@ abstract class TaskamoApiClient {
       ),
       queryParameters: query,
     );
-
     ApiHandler responseData = ApiHandler();
     try {
       responseData = StatusCode().checkResponseStatusCode(response);
@@ -91,7 +90,6 @@ abstract class TaskamoApiClient {
       ),
       queryParameters: query,
     );
-
     ApiHandler responseData = ApiHandler();
     try {
       responseData = StatusCode().checkResponseStatusCode(response);
@@ -135,7 +133,6 @@ abstract class TaskamoApiClient {
       ),
       queryParameters: query,
     );
-
     ApiHandler responseData = ApiHandler();
     try {
       responseData = StatusCode().checkResponseStatusCode(response);
@@ -152,7 +149,6 @@ abstract class TaskamoApiClient {
         "request: $header \n url : $finalUrl \n req: $body \n statusCode : ${response.statusCode} \n body : ${response.data}",
       );
     }
-
     return responseData;
   }
 
@@ -174,21 +170,6 @@ abstract class TaskamoApiClient {
       ),
     );
     var response = await request.send();
-
-    // final finalUrl = '$_baseUrl$_versionUrl$url';
-    // Logger().i(data);
-    // var request = http.MultipartRequest('POST', Uri.parse(finalUrl));
-    // for (var key in data.keys) {
-    //   if (data[key] != 'profile') {
-    //     request.fields[key] = data[key].toString();
-    //   }
-    // }
-    // request.headers['Authorization'] = await _getAccessToken();
-    // request.headers['Content-Type'] = "application/json; charset=UTF-8";
-    // File image = data["profile"];
-    // request.files
-    //     .add(await http.MultipartFile.fromPath(("profile"), image.path));
-    // var res = await request.send();
     if (response.statusCode == 200) {
       Logger().i(
         "request: ${request.headers} \n url : $uri \n req: ${request.fields} \n statusCode : ${response.statusCode}",
@@ -244,7 +225,6 @@ abstract class TaskamoApiClient {
         "request: $header \n url : $finalUrl \n req: $body \n statusCode : ${response.statusCode} \n body : ${response.data}",
       );
     }
-
     return responseData;
   }
 }

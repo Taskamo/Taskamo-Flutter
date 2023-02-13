@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:localization/localization.dart';
 import 'package:taskamo/blocs/api/event/event_bloc.dart';
 import 'package:taskamo/blocs/api/profile/profile_bloc.dart';
+import 'package:taskamo/blocs/api/timeline/timeline_bloc.dart';
 import 'package:taskamo/blocs/api/todo/todo_bloc.dart';
 import 'package:taskamo/blocs/router/taskamo_router_bloc.dart';
 import 'package:taskamo/ui/screens/calendar_screen/calendar_screen.dart';
@@ -28,6 +29,9 @@ class TaskamoRouter extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => EventBloc(),
+        ),
+        BlocProvider(
+          create: (context) => TimelineBloc(),
         ),
         BlocProvider(
           create: (context) => TodoBloc(),

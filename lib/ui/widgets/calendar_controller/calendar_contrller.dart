@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:taskamo/blocs/api/timeline/timeline_bloc.dart';
 import 'package:taskamo/ui/widgets/button_widget/button_widget.dart';
 import 'package:taskamo/ui/widgets/decoration_widget/decoration_widget.dart';
 import 'package:taskamo/ui/widgets/icon_widget/icon_widget.dart';
@@ -49,8 +51,13 @@ class _CalendarRowControllerState extends State<CalendarRowController> {
               ),
               onPressed: () {
                 setState(
-                      () {
+                  () {
                     widget.controller.backward!();
+                    context.read<TimelineBloc>().add(
+                          GetTimelinesEvent(
+                              date:
+                                  "${widget.controller.displayDate?.year}-${widget.controller.displayDate?.month}-${widget.controller.displayDate?.day}"),
+                        );
                   },
                 );
               },
@@ -81,8 +88,13 @@ class _CalendarRowControllerState extends State<CalendarRowController> {
               ),
               onPressed: () {
                 setState(
-                      () {
+                  () {
                     widget.controller.forward!();
+                    context.read<TimelineBloc>().add(
+                          GetTimelinesEvent(
+                              date:
+                                  "${widget.controller.displayDate?.year}-${widget.controller.displayDate?.month}-${widget.controller.displayDate?.day}"),
+                        );
                   },
                 );
               },

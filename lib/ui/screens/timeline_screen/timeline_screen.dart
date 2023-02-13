@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:taskamo/blocs/api/timeline/timeline_bloc.dart';
 import 'package:taskamo/ui/screens/timeline_screen/timeline_widget.dart';
 import 'package:taskamo/ui/widgets/bottom_navigation_widget/bottom_navigation_widget.dart';
 import 'package:taskamo/ui/widgets/calendar_controller/calendar_contrller.dart';
@@ -20,8 +22,12 @@ class _TimelineScreenState extends State<TimelineScreen> {
   @override
   void initState() {
     super.initState();
+    DateTime now = DateTime.now();
     controller = CalendarController();
-    controller.displayDate = DateTime.now();
+    controller.displayDate = now;
+    context.read<TimelineBloc>().add(
+          GetTimelinesEvent(date: "${now.year}-${now.month}-${now.day}"),
+        );
   }
 
   @override
@@ -53,7 +59,9 @@ class _TimelineScreenState extends State<TimelineScreen> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            //TODO
+          },
           backgroundColor: Theme.of(context).primaryColor,
           child: const IconWidget(
             url: TaskamoIconCategories.plus,
