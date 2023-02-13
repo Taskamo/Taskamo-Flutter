@@ -32,6 +32,7 @@ dependencies:
   #  table_calendar: ^3.0.8
 #  calendar_view: ^1.0.1
   http: ^0.13.4
+  flutter_datetime_picker: ^1.5.1
 #  shamsi_date: ^1.0.1
 
 

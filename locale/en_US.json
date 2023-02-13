@@ -46,8 +46,11 @@
   "submit": "Submit",
   "description": "Description",
   "newTodo": "New Todo",
+  "newTimeline": "New Timeline",
   "editTodo": "Edit Todo",
   "editProfile": "Edit Profile",
   "selectPicture": "Select Picture",
+  "startAt": "Starts at",
+  "endAt": "Ends at",
   "": ""
 }

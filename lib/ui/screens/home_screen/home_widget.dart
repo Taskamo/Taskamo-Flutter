@@ -221,7 +221,6 @@ class HomeTaskWidget extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      //dropdown todo.enum typed
                       Row(
                         children: const [
                           Expanded(child: TodoStatusDropDown()),

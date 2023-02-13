@@ -28,7 +28,7 @@ class CalendarEventOfMonthWidget extends StatelessWidget {
           );
         } else {
           if (state.eventsModel.data.isEmpty) {
-            return const SizedBox(); //TODO empty state
+            return const SizedBox();
           }
           return DecorationWidget(
             margin: const EdgeInsets.all(8),

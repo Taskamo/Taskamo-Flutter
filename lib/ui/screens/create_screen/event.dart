@@ -50,9 +50,6 @@ class _UpdateEventState extends State<UpdateEvent> {
     return false;
   }
 
-  //TODO date picker
-  //TODO if event null trigger create event then refresh
-  //TODO else trigger edit event then refresh
 
   @override
   void initState() {
