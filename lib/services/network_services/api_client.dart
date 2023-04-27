@@ -130,6 +130,10 @@ abstract class TaskamoApiClient {
       data: body,
       options: Options(
         headers: header,
+        followRedirects: false,
+        validateStatus: (status) {
+          return status! < 500;
+        },
       ),
       queryParameters: query,
     );

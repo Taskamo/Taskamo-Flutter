@@ -11,11 +11,11 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_bloc: ^8.0.1
-  flutter_svg: ^1.1.6
-  flutter_launcher_icons: ^0.11.0
+  flutter_svg: ^2.0.5
+  flutter_launcher_icons: ^0.13.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  flutter_secure_storage: ^6.0.0
+  flutter_secure_storage: ^8.0.0
   flutter_native_splash: ^2.2.6
   graphql_flutter: ^5.1.0
   logger: ^1.1.0
@@ -24,10 +24,11 @@ dependencies:
     sdk: flutter
   floating_bottom_navigation_bar: ^1.5.2
   dropdown_button2: ^1.8.2
-  syncfusion_flutter_calendar: ^20.4.38
-  dio: ^4.0.6
+  syncfusion_flutter_calendar: ^21.1.41
+  dio: ^5.1.1
   cached_network_image: ^3.2.3
   image_picker: ^0.8.6+1
+#  images_picker: ^1.2.11
 #  image_cropper: ^2.0.3
   #  table_calendar: ^3.0.8
 #  calendar_view: ^1.0.1

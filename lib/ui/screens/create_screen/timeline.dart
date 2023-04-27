@@ -268,7 +268,6 @@ class _CreateTimelineState extends State<CreateTimeline> {
                         startAt: startAt!,
                         endAt: endAt!,
                       );
-
                       context.read<TimelineBloc>().add(
                             CreateTimelineEvent(
                               createTimelineModel: timeline,

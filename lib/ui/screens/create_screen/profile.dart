@@ -91,10 +91,10 @@ class _EditProfileState extends State<EditProfile> {
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           child: GestureDetector(
                             onTap: () async {
-                              image = await PickImage().profilePicker();
-                              if (image != null) {
-                                selected = true;
-                              }
+                              // image = await PickImage().profilePicker();
+                              // if (image != null) {
+                              //   selected = true;
+                              // }
                               setState(
                                 () {},
                               );
